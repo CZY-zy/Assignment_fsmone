@@ -1,0 +1,29 @@
+.footer {
+    background-color: black;
+    position: fixed;
+    bottom: 0;
+    min-height: fit-content;
+}
+
+.left-footer {
+    position: relative;
+    margin: 5rem;
+    float: left;
+}
+
+.right-footer {
+    margin: 1.5rem;
+    margin-right: 47rem;
+}
+
+.copyright {
+    color: grey;
+}
+
+a {
+    color: white;
+}
+
+a:hover{
+    text-decoration: underline;
+}

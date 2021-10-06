@@ -1,0 +1,14 @@
+.banner {
+    position: sticky;
+    top: 0;
+}
+
+.logo {
+    padding: 1rem;
+    margin-left: 6rem;
+    position: relative;
+}
+
+hr.header {
+    border: 1px solid red;
+}
