@@ -7,6 +7,26 @@
         <h1>Verify Your Identity Document Today</h1>
         Upload your supporting document so that we can confirm your identity.
     </div>
+
+    <div class="content-form">
+        <div class="section">
+            <div class="input-method">
+                <div class="input-method-label">
+                    Choose An Input Method
+                </div>
+                <div class="input-method-button">
+                    <button nz-button [nzType]="'primary'" (click)="showModal()"><span>Show Modal</span></button>
+                        <nz-modal [(nzVisible)]="isVisible" nzTitle="The first Modal" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+                            <ng-container *nzModalContent>
+                                <p>Content one</p>
+                                <p>Content two</p>
+                                <p>Content three</p>
+                            </ng-container>
+                        </nz-modal>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <app-footer></app-footer>
