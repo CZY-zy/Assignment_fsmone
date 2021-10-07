@@ -1,6 +1,6 @@
 .footer {
     background-color: black;
-    position: fixed;
+    position: static;
     bottom: 0;
     min-height: fit-content;
 }
@@ -9,15 +9,22 @@
     position: relative;
     margin: 5rem;
     float: left;
+    height: 70px;
 }
 
 .right-footer {
     margin: 1.5rem;
-    margin-right: 47rem;
+    margin-right: 25rem;
+    padding: 1rem;
+}
+
+.external-link {
+    margin: 1.5rem 0;
 }
 
 .copyright {
     color: grey;
+    font-size: 10px;
 }
 
 a {

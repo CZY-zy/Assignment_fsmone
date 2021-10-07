@@ -1,4 +1,156 @@
 <app-header></app-header>
+
 <app-menu></app-menu>
-<p>account-info works!</p>
+
+<div class="content">
+
+    <div class="content-header">
+        <h1>Account Information</h1>
+        Welcome to FSMOne. We will need some information from you for account opening.
+    </div>
+
+    <div class="content-form">
+
+        <form nz-form [formGroup]="accountInfoForm" (ngSubmit)="createAccountInfo()">
+
+            <div class="section">
+                <h1>Account Login Details</h1>
+                <nz-form-item>
+                    <nz-form-control [nzSpan]="12" nzErrorTip="The input is not valid E-mail!">
+                        <nz-input-group>
+                            <input type="text" formControlName="user_id" nz-input placeholder="User ID">
+                        </nz-input-group>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-control [nzSpan]="15">
+                        <nz-input-group>
+                            <input type="password" formControlName="password" nz-input placeholder="Password">
+                        </nz-input-group>
+                    </nz-form-control>
+                    <nz-form-control [nzSpan]="15">
+                        <nz-input-group>
+                            <input type="password" formControlName="password2" nz-input placeholder="Confirm Password">
+                        </nz-input-group>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+
+            <div class="section">
+                <h1>Personal Information</h1>
+                <h2>Are you a Malaysian citizen?</h2>
+                <nz-form-item>
+                    <nz-form-control [nzSpan]="10">
+                        <nz-radio-group nzButtonStyle="solid" formControlName="citizenship">
+                            <label nz-radio-button nzValue="Yes">Yes</label>
+                            <label nz-radio-button nzValue="No">No</label>
+                          </nz-radio-group>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-control [nzSpan]="10">
+                        <nz-input-group>
+                            <input type="text" formControlName="nric" nz-input placeholder="NRIC">
+                        </nz-input-group>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-control [nzSpan]="10">
+                        <nz-input-group nzCompact>
+                            <nz-select formControlName="nric_type">
+                              <nz-option [nzLabel]="'MyKad (Malaysia Citizen)'" [nzValue]="'MyKad'"></nz-option>
+                              <nz-option [nzLabel]="'MyTentera (Army in Services)'" [nzValue]="'MyTentera'"></nz-option>
+                              <nz-option [nzLabel]="'MyPR (Permanent Resident)'" [nzValue]="'MyPR'"></nz-option>
+                              <nz-option [nzLabel]="'MyKas (Temporary Resident)'" [nzValue]="'MyKas'"></nz-option>
+                              <nz-option [nzLabel]="'Others'" [nzValue]="'Others'"></nz-option>
+                            </nz-select>
+                        </nz-input-group>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-control [nzSpan]="3">
+                        <nz-input-group nzCompact>
+                            <nz-select formControlName="salutation">
+                              <nz-option [nzLabel]="'Salutation'" [nzValue]="'Salutation'"></nz-option>
+                              <nz-option [nzLabel]="'Dr'" [nzValue]="'Dr'"></nz-option>
+                              <nz-option [nzLabel]="'Mdm'" [nzValue]="'Mdm'"></nz-option>
+                              <nz-option [nzLabel]="'Mr'" [nzValue]="'Mr'"></nz-option>
+                              <nz-option [nzLabel]="'Mrs'" [nzValue]="'Mrs'"></nz-option>
+                              <nz-option [nzLabel]="'Ms'" [nzValue]="'Ms'"></nz-option>
+                              <nz-option [nzLabel]="'Tan Sri'" [nzValue]="'Tan_Sri'"></nz-option>
+                              <nz-option [nzLabel]="'Dato'" [nzValue]="'Dato'"></nz-option>
+                              <nz-option [nzLabel]="'Datin'" [nzValue]="'Datin'"></nz-option>
+                              <nz-option [nzLabel]="'Prof'" [nzValue]="'Prof'"></nz-option>
+                            </nz-select>
+                          </nz-input-group>
+                    </nz-form-control>
+                    <nz-form-control [nzSpan]="14">
+                        <nz-input-group>
+                            <input type="text" formControlName="name" nz-input placeholder="Full name as per NRIC">
+                        </nz-input-group>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+
+            <div class="section">
+                <h1>Contact Information</h1>
+                <nz-form-item>
+                    <nz-form-control [nzSpan]=10>
+                      <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate">
+                        <ng-template #addOnBeforeTemplate>
+                          <nz-select formControlName="dialing_code" class="phone-select">
+                            <nz-option nzLabel="+60(Malaysia)" nzValue="+60(Malaysia)"></nz-option>
+                            <nz-option nzLabel="+87" nzValue="+87"></nz-option>
+                          </nz-select>
+                        </ng-template>
+                        <input formControlName="mobileNo" id="'phoneNumber'" nz-input />
+                      </nz-input-group>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+
+            <div class="section">
+                <h1>Email Address</h1>
+                <nz-form-item>
+                    <nz-form-control [nzSpan]="12">
+                        <nz-input-group>
+                            <input type="email" formControlName="email" nz-input placeholder="Email">
+                        </nz-input-group>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+
+            <div class="section">
+                <h2>Reference's Account No. (Optional)</h2>
+                <nz-form-item>
+                    <nz-form-control [nzSpan]=10>
+                      <nz-input-group>
+                        <input type="text" formControlName="referrer_account_no" nz-input placeholder="Referrer Account No">
+                        <input type="text" formControlName="referrer_name" nz-input placeholder="Referrer Name"/>
+                      </nz-input-group>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+
+            <nz-form-item>
+                <nz-form-control [nzSpan]="10">
+                    <button nz-button nzType="primary">Register</button>
+                </nz-form-control>
+            </nz-form-item>
+        </form>
+
+        <!--<p *ngIf="user_id">{{user_id}}</p>
+        <p *ngIf="password">{{password}}</p>
+        <p *ngIf="citizenship">{{citizenship}}</p>
+        <p *ngIf="nric">{{nric}}</p>
+        <p *ngIf="nric_type">{{nric_type}}</p>
+        <p *ngIf="salutation">{{salutation}}</p>
+        <p *ngIf="name">{{name}}</p>
+        <p *ngIf="dialing_code">{{dialing_code}}</p>
+        <p *ngIf="mobileNo">{{mobileNo}}</p>
+        <p *ngIf="email">{{email}}</p>
+        <p *ngIf="referrer_account_no">{{referrer_account_no}}</p>
+        <p *ngIf="referrer_name">{{referrer_name}}</p>-->
+    </div>
+</div>
 <app-footer></app-footer>

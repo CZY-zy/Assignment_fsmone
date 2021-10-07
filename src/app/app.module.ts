@@ -7,7 +7,7 @@ import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { en_US } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AccountInfoComponent } from './account-info/account-info.component';
@@ -15,6 +15,15 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { MenuComponent } from './menu/menu.component';
 import { NzTimelineModule } from 'ng-zorro-antd/timeline';
+import { NzStepsModule } from 'ng-zorro-antd/steps';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzRadioModule } from 'ng-zorro-antd/radio';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { TaxInfoComponent } from './tax-info/tax-info.component';
+import { SupportingDocComponent } from './supporting-doc/supporting-doc.component';
 
 registerLocaleData(en);
 
@@ -24,15 +33,24 @@ registerLocaleData(en);
     AccountInfoComponent,
     HeaderComponent,
     FooterComponent,
-    MenuComponent
+    MenuComponent,
+    TaxInfoComponent,
+    SupportingDocComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    NzTimelineModule
+    NzStepsModule,
+    NzFormModule,
+    NzInputModule,
+    NzLayoutModule,
+    NzButtonModule,
+    NzRadioModule,
+    NzSelectModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]

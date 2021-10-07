@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+.content {
+    margin: 0 25rem;
+    padding: 0 2.5rem;
+    width: 70rem;
+    border-left: 1px solid grey;
+    min-height: 490px;
+}
+
+.section {
+    margin: 2.5rem 0;
+}
+
+input {
+    margin: 1rem 0;
+}

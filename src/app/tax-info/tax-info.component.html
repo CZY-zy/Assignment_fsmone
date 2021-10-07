@@ -1,0 +1,49 @@
+<app-header></app-header>
+
+<app-menu></app-menu>
+
+<div class="content">
+    <div class="content-header">
+        <h1>Tax Information</h1>
+        Input your tax residency details
+    </div>
+
+    <div class="content-form">
+        <form nz-form [formGroup]="taxInfoForm" (ngSubmit)="createTaxInfo()">
+            <div class="section">
+                <h2>Do you hold the United State (U.S) citizenship, green card or passport?</h2>
+                <nz-form-item>
+                    <nz-form-control [nzSpan]="10">
+                        <nz-radio-group nzButtonStyle="solid" formControlName="us_citizenship_greencard_passport">
+                            <label nz-radio-button nzValue="Yes">Yes</label>
+                            <label nz-radio-button nzValue="No">No</label>
+                          </nz-radio-group>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div class="section">
+                <h2>Are you a tax resident outside Malaysia?</h2>
+                <nz-form-item>
+                    <nz-form-control [nzSpan]="10">
+                        <nz-radio-group nzButtonStyle="solid" formControlName="my_tax_resident">
+                            <label nz-radio-button nzValue="Yes">Yes</label>
+                            <label nz-radio-button nzValue="No">No</label>
+                          </nz-radio-group>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div class="section">
+                <nz-form-item>
+                    <nz-form-control [nzSpan]="10">
+                        <button nz-button nzType="primary">Save & Continue</button>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </form>
+
+        <!--<p *ngIf="us_citizenship_greencard_passport">{{us_citizenship_greencard_passport}}</p>
+        <p *ngIf="my_tax_resident">{{my_tax_resident}}</p>-->
+    </div>
+</div>
+
+<app-footer></app-footer>

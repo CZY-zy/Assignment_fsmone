@@ -12,4 +12,30 @@ export class MenuComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  checkStep(): void{
+  }
+
+  isAccountInfo(): boolean{
+    if(localStorage.getItem('step')=="accountInformation"){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  isTaxInfo(): boolean{
+    if(localStorage.getItem('step')=="taxInformation"){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  isSupportDoc(): boolean{
+    if(localStorage.getItem('step')=="supporting_doc"){
+      return true;
+    }else{
+      return false;
+    }
+  }
 }

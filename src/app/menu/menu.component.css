@@ -1,3 +1,30 @@
 .menu {
+    position: relative;
     float: left;
+    padding: 0 50px;
+}
+
+.timeline {
+    background-color: grey;
+    padding: 0 40px;
+    width: 20rem;
+    float: left;
+}
+
+::ng-deep .ant-steps-item-process>.ant-steps-item-container>.ant-steps-item-icon {
+    background-color: maroon;
+}
+
+::ng-deep .ant-steps-item-process .ant-steps-item-icon {
+    background-color: #fff;
+    border-color: maroon;
+}
+
+::ng-deep .ant-steps-item-finish .ant-steps-item-icon {
+    background-color: maroon;
+    border-color: maroon;
+}
+
+::ng-deep .ant-steps-item-finish .ant-steps-item-icon>.ant-steps-icon {
+    color: white;
 }
