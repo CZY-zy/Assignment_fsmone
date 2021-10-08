@@ -1,0 +1,50 @@
+.input-method{
+    position: relative;
+}
+
+.input-method-label, .input-method-button{
+    display: flex;
+    justify-content: center;
+}
+
+.input-method-button-section{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.button-section{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.button-label-section{
+    margin-top: 5rem;
+}
+
+.upload-identity-image{
+    display: flex;
+    justify-content: center;
+}
+
+.ant-card-bordered {
+    border: 1px solid #f0f0f0;
+    background: rgb(245, 243, 243);
+    border-radius: 5px;
+}
+
+.button-section>.ant-btn-primary {
+    color: rgb(224, 224, 224);
+    background: rgb(245, 243, 243);
+    border-color: #144574;
+    text-shadow: 0 -1px 0 rgb(0 0 0 / 12%);
+    box-shadow: 0 2px 0 rgb(0 0 0 / 5%);
+}
+
+.anticon, .anticon svg {
+    display: inline-block;
+    color: #144574;
+}

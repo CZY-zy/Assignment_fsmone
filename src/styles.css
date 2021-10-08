@@ -8,9 +8,26 @@
 }
 
 .section {
-    margin: 2.5rem 0;
+    margin: 5rem 0;
 }
 
 input {
-    margin: 1rem 0;
+    margin: 2rem 0;
+}
+
+.alert-danger{
+    min-height: 50px;
+}
+
+.ant-alert-warning {
+    background-color: white;
+    border: 1px solid white
+}
+
+.ant-alert-message {
+    color: orangered;
+}
+
+.ant-alert-warning .ant-alert-icon {
+    color: orangered;
 }

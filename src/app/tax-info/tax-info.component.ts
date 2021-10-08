@@ -27,7 +27,9 @@ export class TaxInfoComponent implements OnInit {
   createTaxInfo(): void{
     this.us_citizenship_greencard_passport = this.taxInfoForm.value.us_citizenship_greencard_passport;
     this.my_tax_resident = this.taxInfoForm.value.my_tax_resident;
-
+    
+    //console.log(this.us_citizenship_greencard_passport);
+    //console.log(this.my_tax_resident);
     this.router.navigateByUrl('support-doc');
   }
 

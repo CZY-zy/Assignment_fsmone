@@ -10,21 +10,66 @@
 
     <div class="content-form">
         <div class="section">
-            <div class="input-method">
-                <div class="input-method-label">
-                    Choose An Input Method
+            <!--place for content's modal-->
+                <div class="input-method">
+                    <nz-card style="width:450px;height: 250px;">
+                        <div class="input-method-label">
+                            Choose An Input Method
+                        </div>
+                        <div class="input-method-button-section">
+                            <div class="button-section">
+                                <button nz-button [nzType]="'primary'" [nzSize]="'large'" nzShape="circle" (click)="showModal()"><span><i nz-icon nzType="upload"></i></span></button>
+                                <!--nzmodel display-->
+                                    <nz-modal
+                                        [(nzVisible)]="isVisible"
+                                        [nzTitle]="modalTitle"
+                                        [nzContent]="modalContent"
+                                        [nzFooter]="modalFooter"
+                                        (nzOnCancel)="handleCancel()"
+                                        >
+                                        <ng-template #modalTitle>Upload Identity</ng-template>
+
+                                        <ng-template #modalContent>
+
+                                            <div *ngIf="isFirstStep()">
+                                                <p><img src="../../assets/support-doc.jpg"></p>
+                                                <p>All your details are protected in accordance with our privacy policy</p>
+                                            </div>
+
+                                            <div *ngIf="isSecondStep()">
+                                                <nz-upload
+                                                    class="avatar-uploader"
+                                                    nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                                                    nzName="avatar"
+                                                    nzListType="picture-card"
+                                                    [nzShowUploadList]="false"
+                                                    [nzBeforeUpload]="beforeUpload"
+                                                    (nzChange)="handleChange($event)"
+                                                >
+                                                    <ng-container *ngIf="!avatarUrl">
+                                                        <i class="upload-icon" nz-icon [nzType]="loading ? 'loading' : 'plus'"></i>
+                                                        <div class="ant-upload-text">Upload</div>
+                                                    </ng-container>
+                                                        <img *ngIf="avatarUrl" [src]="avatarUrl" style="width: 100%" />
+                                                </nz-upload>
+                                                <p>NRIC (Front)</p>
+                                            </div>
+
+                                        </ng-template>
+
+                                        <ng-template #modalFooter>
+                                            <button nz-button nzType="default" (click)="handleCancel()">Cancel</button>
+                                            <button nz-button nzType="primary" (click)="handleOk()" [nzLoading]="isConfirmLoading" *ngIf="isFirstStep()">Upload</button>
+                                            <button nz-button nzType="primary" (click)="handleUpload()" [nzLoading]="isUploading" *ngIf="isSecondStep()">Upload2</button>
+                                        </ng-template>
+                                    </nz-modal>
+                            </div>
+                            <div class="button-label-section">
+                                Upload Image
+                            </div>
+                        </div>
+                    </nz-card>
                 </div>
-                <div class="input-method-button">
-                    <button nz-button [nzType]="'primary'" (click)="showModal()"><span>Show Modal</span></button>
-                        <nz-modal [(nzVisible)]="isVisible" nzTitle="Upload Identity Document" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
-                            <ng-container *nzModalContent>
-                                <p>Content one</p>
-                                <p>Content two</p>
-                                <p>Content three</p>
-                            </ng-container>
-                        </nz-modal>
-                </div>
-            </div>
         </div>
     </div>
 </div>

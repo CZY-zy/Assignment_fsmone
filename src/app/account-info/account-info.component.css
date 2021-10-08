@@ -1,3 +1,21 @@
 .phone-select {
     width: 70px;
   }
+
+  .password1 {
+    float: left;
+    width:30rem;
+    position: relative;
+  }
+
+  .password2{
+    float: left;
+    width: 30rem;
+    position: relative;
+  }
+
+  .alert-danger-password {
+    margin: -15px 0;
+    position: absolute;
+    bottom: 0;
+  }

@@ -2,6 +2,7 @@
     position: relative;
     float: left;
     padding: 0 50px;
+    opacity: 1;
 }
 
 .timeline {
@@ -27,4 +28,17 @@
 
 ::ng-deep .ant-steps-item-finish .ant-steps-item-icon>.ant-steps-icon {
     color: white;
+}
+
+::ng-deep .ant-input-group {
+    padding: 4px;
+    color: rgba(0,0,0,.85);
+    display: table;
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+::ng-deep .ant-steps-item-finish>.ant-steps-item-container>.ant-steps-item-content>.ant-steps-item-title, .ant-switch, .ant-table {
+    color: rgb(204, 22, 22);
 }

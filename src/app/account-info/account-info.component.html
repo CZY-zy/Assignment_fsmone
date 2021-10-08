@@ -11,29 +11,54 @@
 
     <div class="content-form">
 
-        <form nz-form [formGroup]="accountInfoForm" (ngSubmit)="createAccountInfo()">
+        <form nz-form [formGroup]="accountInfoForm" (ngSubmit)="submitAccountInfo()" ngNativeValidate>
 
             <div class="section">
                 <h1>Account Login Details</h1>
                 <nz-form-item>
-                    <nz-form-control [nzSpan]="12" nzErrorTip="The input is not valid E-mail!">
+                    <nz-form-control [nzSpan]="12">
                         <nz-input-group>
-                            <input type="text" formControlName="user_id" nz-input placeholder="User ID">
+                            <input type="text" formControlName="user_id" nz-input placeholder="User ID" oninput="this.value = this.value.toUpperCase()">
                         </nz-input-group>
                     </nz-form-control>
                 </nz-form-item>
-                <nz-form-item>
-                    <nz-form-control [nzSpan]="15">
-                        <nz-input-group>
-                            <input type="password" formControlName="password" nz-input placeholder="Password">
-                        </nz-input-group>
-                    </nz-form-control>
-                    <nz-form-control [nzSpan]="15">
-                        <nz-input-group>
-                            <input type="password" formControlName="password2" nz-input placeholder="Confirm Password">
-                        </nz-input-group>
-                    </nz-form-control>
-                </nz-form-item>
+                <div class="alert-danger" *ngIf="user_validation">
+                    <nz-alert nzBanner nzMessage={{blankMessage}} 
+                        *ngIf="accountInfoForm.controls['user_id'].hasError('required')">
+                    </nz-alert>
+                    <nz-alert nzBanner nzMessage="Login name must be at least 8 characters." 
+                        *ngIf="accountInfoForm.controls['user_id'].hasError('minlength') || accountInfoForm.controls['user_id'].hasError('required')">
+                    </nz-alert>
+                    <nz-alert nzBanner nzMessage="Login name must contain alphabet value or combination of alphanumeric value only." 
+                        *ngIf="accountInfoForm.controls['user_id'].hasError('pattern')">
+                    </nz-alert>
+                </div>
+                <div class="password1">
+                    <nz-form-item>
+                        <nz-form-control [nzSpan]="12">
+                            <nz-input-group>
+                                <input type="password" formControlName="password" nz-input placeholder="Password">
+                            </nz-input-group>
+                        </nz-form-control>
+                        <div class="alert-danger-password" *ngIf="password_validation">
+                            <nz-alert nzBanner nzMessage={{blankMessage}} 
+                                *ngIf="accountInfoForm.controls['password'].hasError('required')">
+                            </nz-alert>
+                        </div>
+                    </nz-form-item>
+                </div>
+                <div class="password2">
+                    <nz-form-item>
+                        <nz-form-control [nzSpan]="12">
+                            <nz-input-group>
+                                <input type="password" formControlName="password2" nz-input placeholder="Confirm Password">
+                            </nz-input-group>
+                        </nz-form-control>
+                        <div class="alert-danger-password" *ngIf="password2_validation">
+                            <nz-alert nzBanner nzMessage="Please ensure both password field matches."></nz-alert>
+                        </div>
+                    </nz-form-item>
+                </div>
             </div>
 
             <div class="section">
@@ -48,12 +73,20 @@
                     </nz-form-control>
                 </nz-form-item>
                 <nz-form-item>
-                    <nz-form-control [nzSpan]="10">
+                    <nz-form-control [nzSpan]="12">
                         <nz-input-group>
                             <input type="text" formControlName="nric" nz-input placeholder="NRIC">
                         </nz-input-group>
                     </nz-form-control>
                 </nz-form-item>
+                <div class="alert-danger" *ngIf="nric_validation">
+                    <nz-alert nzBanner nzMessage={{blankMessage}} 
+                        *ngIf="accountInfoForm.controls['nric'].hasError('required')">
+                    </nz-alert>
+                    <nz-alert nzBanner nzMessage="Please enter a valid NRIC without dash." 
+                        *ngIf="accountInfoForm.controls['nric'].hasError('required') || accountInfoForm.controls['nric'].hasError('minlength')">
+                    </nz-alert>
+                </div>
                 <nz-form-item>
                     <nz-form-control [nzSpan]="10">
                         <nz-input-group nzCompact>
@@ -67,46 +100,70 @@
                         </nz-input-group>
                     </nz-form-control>
                 </nz-form-item>
-                <nz-form-item>
-                    <nz-form-control [nzSpan]="3">
-                        <nz-input-group nzCompact>
-                            <nz-select formControlName="salutation">
-                              <nz-option [nzLabel]="'Salutation'" [nzValue]="'Salutation'"></nz-option>
-                              <nz-option [nzLabel]="'Dr'" [nzValue]="'Dr'"></nz-option>
-                              <nz-option [nzLabel]="'Mdm'" [nzValue]="'Mdm'"></nz-option>
-                              <nz-option [nzLabel]="'Mr'" [nzValue]="'Mr'"></nz-option>
-                              <nz-option [nzLabel]="'Mrs'" [nzValue]="'Mrs'"></nz-option>
-                              <nz-option [nzLabel]="'Ms'" [nzValue]="'Ms'"></nz-option>
-                              <nz-option [nzLabel]="'Tan Sri'" [nzValue]="'Tan_Sri'"></nz-option>
-                              <nz-option [nzLabel]="'Dato'" [nzValue]="'Dato'"></nz-option>
-                              <nz-option [nzLabel]="'Datin'" [nzValue]="'Datin'"></nz-option>
-                              <nz-option [nzLabel]="'Prof'" [nzValue]="'Prof'"></nz-option>
-                            </nz-select>
-                          </nz-input-group>
-                    </nz-form-control>
-                    <nz-form-control [nzSpan]="14">
-                        <nz-input-group>
-                            <input type="text" formControlName="name" nz-input placeholder="Full name as per NRIC">
-                        </nz-input-group>
-                    </nz-form-control>
-                </nz-form-item>
+                <div class="password1">
+                    <nz-form-item>
+                        <nz-form-control [nzSpan]="3">
+                            <nz-input-group nzCompact>
+                                <nz-select formControlName="salutation">
+                                  <nz-option [nzLabel]="'Salutation'" [nzValue]="''"></nz-option>
+                                  <nz-option [nzLabel]="'Dr'" [nzValue]="'Dr'"></nz-option>
+                                  <nz-option [nzLabel]="'Mdm'" [nzValue]="'Mdm'"></nz-option>
+                                  <nz-option [nzLabel]="'Mr'" [nzValue]="'Mr'"></nz-option>
+                                  <nz-option [nzLabel]="'Mrs'" [nzValue]="'Mrs'"></nz-option>
+                                  <nz-option [nzLabel]="'Ms'" [nzValue]="'Ms'"></nz-option>
+                                  <nz-option [nzLabel]="'Tan Sri'" [nzValue]="'Tan_Sri'"></nz-option>
+                                  <nz-option [nzLabel]="'Dato'" [nzValue]="'Dato'"></nz-option>
+                                  <nz-option [nzLabel]="'Datin'" [nzValue]="'Datin'"></nz-option>
+                                  <nz-option [nzLabel]="'Prof'" [nzValue]="'Prof'"></nz-option>
+                                </nz-select>
+                              </nz-input-group>
+                        </nz-form-control>
+                    </nz-form-item>
+                    <div class="alert-danger" *ngIf="salutation_validation">
+                        <nz-alert nzBanner nzMessage={{blankMessage}} 
+                            *ngIf="accountInfoForm.controls['salutation'].hasError('required')">
+                        </nz-alert>
+                    </div>
+                </div>
+                <div class="password2">
+                    <nz-form-item>
+                        <nz-form-control [nzSpan]="14">
+                            <nz-input-group>
+                                <input type="text" formControlName="name" nz-input placeholder="Full name as per NRIC">
+                            </nz-input-group>
+                        </nz-form-control>
+                    </nz-form-item>
+                    <div class="alert-danger" *ngIf="name_validation">
+                        <nz-alert nzBanner nzMessage={{blankMessage}} 
+                            *ngIf="accountInfoForm.controls['name'].hasError('required')">
+                        </nz-alert>
+                    </div> 
+                </div>  
             </div>
 
             <div class="section">
                 <h1>Contact Information</h1>
                 <nz-form-item>
-                    <nz-form-control [nzSpan]=10>
+                    <nz-form-control [nzSpan]=13>
                       <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate">
                         <ng-template #addOnBeforeTemplate>
                           <nz-select formControlName="dialing_code" class="phone-select">
                             <nz-option nzLabel="+60(Malaysia)" nzValue="+60(Malaysia)"></nz-option>
-                            <nz-option nzLabel="+87" nzValue="+87"></nz-option>
+                            <nz-option nzLabel="+47(Norway)" nzValue="+87(Norway)"></nz-option>
                           </nz-select>
                         </ng-template>
                         <input formControlName="mobileNo" id="'phoneNumber'" nz-input />
                       </nz-input-group>
                     </nz-form-control>
                 </nz-form-item>
+                <div class="alert-danger" *ngIf="mobile_no_validation">
+                    <nz-alert nzBanner nzMessage={{blankMessage}} 
+                        *ngIf="accountInfoForm.controls['mobileNo'].hasError('required')">
+                    </nz-alert>
+                    <nz-alert nzBanner nzMessage="Please ensure the mobile number is valid." 
+                        *ngIf="accountInfoForm.controls['mobileNo'].hasError('minlength')">
+                    </nz-alert>
+                </div> 
             </div>
 
             <div class="section">
@@ -118,6 +175,14 @@
                         </nz-input-group>
                     </nz-form-control>
                 </nz-form-item>
+                <div class="alert-danger" *ngIf="email_validation">
+                    <nz-alert nzBanner nzMessage={{blankMessage}} 
+                        *ngIf="accountInfoForm.controls['email'].hasError('required')">
+                    </nz-alert>
+                    <nz-alert nzBanner nzMessage="Please enter your E-mail address in the format userid@address.domain"
+                        *ngIf="accountInfoForm.controls['email'].hasError('pattern')">
+                    </nz-alert>
+                </div> 
             </div>
 
             <div class="section">
@@ -126,6 +191,8 @@
                     <nz-form-control [nzSpan]=10>
                       <nz-input-group>
                         <input type="text" formControlName="referrer_account_no" nz-input placeholder="Referrer Account No">
+                      </nz-input-group>
+                      <nz-input-group>
                         <input type="text" formControlName="referrer_name" nz-input placeholder="Referrer Name"/>
                       </nz-input-group>
                     </nz-form-control>
@@ -134,7 +201,7 @@
 
             <nz-form-item>
                 <nz-form-control [nzSpan]="10">
-                    <button nz-button nzType="primary">Register</button>
+                    <button nz-button nzType="primary" type="submit">Register</button>
                 </nz-form-control>
             </nz-form-item>
         </form>

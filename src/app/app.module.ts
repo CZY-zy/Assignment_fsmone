@@ -18,6 +18,11 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzAlertModule } from 'ng-zorro-antd/alert';
+import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzUploadModule } from 'ng-zorro-antd/upload';
+import { NzMessageModule } from 'ng-zorro-antd/message';
 
 import { AccountInfoComponent } from './account-info/account-info.component';
 import { HeaderComponent } from './header/header.component';
@@ -25,6 +30,7 @@ import { FooterComponent } from './footer/footer.component';
 import { MenuComponent } from './menu/menu.component';
 import { TaxInfoComponent } from './tax-info/tax-info.component';
 import { SupportingDocComponent } from './supporting-doc/supporting-doc.component';
+import { BasicInfoComponent } from './basic-info/basic-info.component';
 
 registerLocaleData(en);
 
@@ -36,7 +42,8 @@ registerLocaleData(en);
     FooterComponent,
     MenuComponent,
     TaxInfoComponent,
-    SupportingDocComponent
+    SupportingDocComponent,
+    BasicInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +59,12 @@ registerLocaleData(en);
     NzButtonModule,
     NzRadioModule,
     NzSelectModule,
-    NzModalModule
+    NzModalModule,
+    NzIconModule,
+    NzAlertModule,
+    NzCardModule,
+    NzUploadModule,
+    NzMessageModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]
