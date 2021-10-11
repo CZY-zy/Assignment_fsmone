@@ -30,3 +30,26 @@
       <nz-step nzTitle="Financial Information"></nz-step>
     </nz-steps>
 </div>
+
+<div class="menu" *ngIf="isBasicInfo()">
+  <h1>Account Opening</h1>
+  <nz-steps [nzCurrent]="3" nzDirection="vertical">
+      <nz-step nzTitle="Account Information"></nz-step>
+      <nz-step nzTitle="Tax Information"></nz-step>
+      <nz-step nzTitle="Supporting Documents"></nz-step>
+      <nz-step nzTitle="Basic Information"></nz-step>
+      <nz-step nzTitle="Financial Information"></nz-step>
+    </nz-steps>
+</div>
+
+<div class="menu" *ngIf="isFinancialInfo()">
+  <h1>Account Opening</h1>
+  <nz-steps [nzCurrent]="4" nzDirection="vertical">
+      <nz-step nzTitle="Account Information"></nz-step>
+      <nz-step nzTitle="Tax Information"></nz-step>
+      <nz-step nzTitle="Supporting Documents"></nz-step>
+      <nz-step nzTitle="Basic Information"></nz-step>
+      <nz-step nzTitle="Financial Information"></nz-step>
+      <nz-step nzTitle="Opt-In For Stocks CDS Account"></nz-step>
+    </nz-steps>
+</div>

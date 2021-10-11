@@ -5,6 +5,19 @@ import { Observable, Observer } from 'rxjs';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzUploadFile } from 'ng-zorro-antd/upload';
 
+import { HttpClient, HttpRequest, HttpResponse } from '@angular/common/http';
+import { filter } from 'rxjs/operators';
+
+import { Location } from '@angular/common';
+import { Router } from '@angular/router';
+
+const getBase64 = (file: File): Promise<string | ArrayBuffer | null> =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+  });
 @Component({
   selector: 'app-supporting-doc',
   templateUrl: './supporting-doc.component.html',
@@ -14,8 +27,12 @@ export class SupportingDocComponent implements OnInit {
 
   uploadModel!:string;
 
-  constructor(private msg: NzMessageService) { 
-    localStorage.setItem('step',"supporting_doc");
+  constructor(
+    private msg: NzMessageService, 
+    private http: HttpClient,
+    private location: Location,
+    private router: Router) { 
+    localStorage.setItem('step',"supporting_doc",);
     this.uploadModel = "1st";
   }
 
@@ -39,7 +56,7 @@ export class SupportingDocComponent implements OnInit {
     this.isVisible = false;
   }
 
-  handleUpload(): void {
+  handleUpload_page(): void {
     console.log('2nd')
     this.isUploading = true;
     setTimeout(() => {
@@ -67,49 +84,61 @@ export class SupportingDocComponent implements OnInit {
     }
   }
 
-  loading = false;
-  avatarUrl?: string;
+  uploading = false;
+  fileList: NzUploadFile[] = [];
+  fileList2: NzUploadFile[] = [];
 
-  beforeUpload = (file: NzUploadFile, _fileList: NzUploadFile[]) =>
-    new Observable((observer: Observer<boolean>) => {
-      const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
-      if (!isJpgOrPng) {
-        this.msg.error('You can only upload JPG file!');
-        observer.complete();
-        return;
-      }
-      const isLt2M = file.size! / 1024 / 1024 < 2;
-      if (!isLt2M) {
-        this.msg.error('Image must smaller than 2MB!');
-        observer.complete();
-        return;
-      }
-      observer.next(isJpgOrPng && isLt2M);
-      observer.complete();
+  beforeUpload = (file: NzUploadFile): boolean => {
+    this.fileList = this.fileList.concat(file);
+    return false;
+  };
+
+  handleUpload(): void {
+    const formData = new FormData();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    this.fileList.forEach((file: any) => {
+      formData.append('files[]', file);
     });
-
-  private getBase64(img: File, callback: (img: string) => void): void {
-    const reader = new FileReader();
-    reader.addEventListener('load', () => callback(reader.result!.toString()));
-    reader.readAsDataURL(img);
+    this.uploading = true;
+    // You can use any AJAX library you like
+    const req = new HttpRequest('POST', 'https://www.mocky.io/v2/5cc8019d300000980a055e76', formData, {
+      // reportProgress: true
+    });
+    this.http
+      .request(req)
+      .pipe(filter(e => e instanceof HttpResponse))
+      .subscribe(
+        () => {
+          this.uploading = false;
+          this.fileList = [];
+          this.msg.success('upload successfully.');
+        },
+        () => {
+          this.uploading = false;
+          this.msg.error('upload failed.');
+        }
+      );
   }
 
-  handleChange(info: { file: NzUploadFile }): void {
-    switch (info.file.status) {
-      case 'uploading':
-        this.loading = true;
-        break;
-      case 'done':
-        // Get this url from response in real world.
-        this.getBase64(info.file!.originFileObj!, (img: string) => {
-          this.loading = false;
-          this.avatarUrl = img;
-        });
-        break;
-      case 'error':
-        this.msg.error('Network error');
-        this.loading = false;
-        break;
+  /*previewImage: string | undefined = '';
+  previewVisible = false;
+
+  handlePreview = async (file: NzUploadFile) => {
+    if (!file.url && !file.preview) {
+      file.preview = await getBase64(file.originFileObj!);
     }
+    this.previewImage = file.url || file.preview;
+    this.previewVisible = true;
+  };*/
+
+  
+
+  back(){
+    console.log('back')
+    this.location.back();
+  }
+
+  saveAndContinue(){
+    this.router.navigateByUrl('basic-info');
   }
 }

@@ -1,0 +1,14 @@
+::ng-deep .ant-alert-warning .ant-alert-icon {
+    color: orange;
+  }
+  
+  ::ng-deep .ant-alert-warning {
+    margin-left: -1.5rem;
+    width: 30rem;
+  }
+
+  .financial-info-button {
+    margin-top: 2.5rem;
+    margin-right: 1.5rem;
+    width: 8rem;
+  }

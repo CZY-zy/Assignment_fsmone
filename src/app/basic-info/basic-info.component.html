@@ -1,26 +1,362 @@
-<button nz-button nzType="primary" (click)="showModal()">
-    <span>Show Modal</span>
-  </button>
-  <nz-modal
-    [(nzVisible)]="isVisible"
-    [nzTitle]="modalTitle"
-    [nzContent]="modalContent"
-    [nzFooter]="modalFooter"
-    (nzOnCancel)="handleCancel()"
-  >
-    <ng-template #modalTitle>Custom Modal Title</ng-template>
+<app-header></app-header>
 
-    <ng-template #modalContent>
-      <p>Modal Content</p>
-      <p>Modal Content</p>
-      <p>Modal Content</p>
-      <p>Modal Content</p>
-      <p>Modal Content</p>
-    </ng-template>
+<app-menu></app-menu>
 
-    <ng-template #modalFooter>
-      <span>Modal Footer:</span>
-      <button nz-button nzType="default" (click)="handleCancel()">Custom Callback</button>
-      <button nz-button nzType="primary" (click)="handleOk()" [nzLoading]="isConfirmLoading">Custom Submit</button>
-    </ng-template>
-  </nz-modal>
+<div class="content">
+
+    <div class="content-header">
+        <h1>Basic Information</h1>
+        Input your personal information.
+    </div>
+
+    <div class="content-form">
+
+        <form nz-form [formGroup]="basicInfoForm" (ngSubmit)="submitBasicInfo()" ngNativeValidate>
+          <div class="section">
+            <h2>Are you a Malaysian citizen?</h2>
+            <nz-form-item>
+              <nz-form-control [nzSpan]="10">
+                  <nz-radio-group nzButtonStyle="solid" formControlName="citizenship">
+                      <label nz-radio-button nzValue="Yes">Yes</label>
+                      <label nz-radio-button nzValue="No">No</label>
+                    </nz-radio-group>
+              </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-control [nzSpan]="12">
+                <nz-input-group>
+                    <input type="text" formControlName="nric" nz-input>
+                </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+          </div>
+
+          <div class="section">
+            <h2>Personal Information</h2>
+            <nz-form-item>
+              <nz-form-control [nzSpan]="10">
+                  <nz-radio-group nzButtonStyle="solid" formControlName="gender">
+                      <label nz-radio-button nzValue="Male">Male</label>
+                      <label nz-radio-button nzValue="Female">Female</label>
+                    </nz-radio-group>
+              </nz-form-control>
+            </nz-form-item>
+
+            <div class="password1">
+              <nz-form-item>
+                <nz-form-control [nzSpan]="3">
+                    <nz-input-group nzCompact>
+                        <nz-select formControlName="salutation">
+                          <nz-option [nzLabel]="'Salutation'" [nzValue]="''"></nz-option>
+                          <nz-option [nzLabel]="'Dr'" [nzValue]="'Dr'"></nz-option>
+                          <nz-option [nzLabel]="'Mdm'" [nzValue]="'Mdm'"></nz-option>
+                          <nz-option [nzLabel]="'Mr'" [nzValue]="'Mr'"></nz-option>
+                          <nz-option [nzLabel]="'Mrs'" [nzValue]="'Mrs'"></nz-option>
+                          <nz-option [nzLabel]="'Ms'" [nzValue]="'Ms'"></nz-option>
+                          <nz-option [nzLabel]="'Tan Sri'" [nzValue]="'Tan_Sri'"></nz-option>
+                          <nz-option [nzLabel]="'Dato'" [nzValue]="'Dato'"></nz-option>
+                          <nz-option [nzLabel]="'Datin'" [nzValue]="'Datin'"></nz-option>
+                          <nz-option [nzLabel]="'Prof'" [nzValue]="'Prof'"></nz-option>
+                        </nz-select>
+                      </nz-input-group>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div class="password2">
+              <nz-form-item>
+                <nz-form-control [nzSpan]="14">
+                    <nz-input-group>
+                        <input type="text" formControlName="name" nz-input>
+                    </nz-input-group>
+                </nz-form-control>
+              </nz-form-item>
+            </div>       
+          </div>
+
+          <div  class="section">
+            <h2>Date of Birth</h2>
+            <nz-form-item>
+              <nz-form-control>
+                <nz-date-picker formControlName="birthday"></nz-date-picker>
+              </nz-form-control>
+            </nz-form-item>
+
+            <div class="password1">
+              <nz-form-item>
+                <nz-form-control>
+                    <nz-input-group nzCompact>
+                      <nz-select formControlName="race">
+                        <nz-option [nzLabel]="'Race'" [nzValue]="''"></nz-option>
+                        <nz-option [nzLabel]="'Chinese'" [nzValue]="'Chinese'"></nz-option>
+                        <nz-option [nzLabel]="'Indian'" [nzValue]="'Indian'"></nz-option>
+                        <nz-option [nzLabel]="'Malay'" [nzValue]="'Malay'"></nz-option>
+                        <nz-option [nzLabel]="'Others'" [nzValue]="'Others'"></nz-option>
+                      </nz-select>
+                      </nz-input-group>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div class="password1">
+              <nz-form-item>
+                <nz-form-control>
+                  <nz-input-group nzCompact>
+                      <nz-select formControlName="countryOfBirth">
+                        <nz-option [nzLabel]="'Malaysia'" [nzValue]="'Malaysia'"></nz-option>
+                        <nz-option [nzLabel]="'Singapore'" [nzValue]="'Singapore'"></nz-option>
+                      </nz-select>
+                    </nz-input-group>
+              </nz-form-control>
+              </nz-form-item>
+            </div> 
+            <div class="password2">
+              <nz-form-item>
+                <nz-form-control [nzSpan]="5">
+                  <nz-input-group nzCompact>
+                      <nz-select formControlName="marital_status">
+                        <nz-option [nzLabel]="'Marital Status'" [nzValue]="''"></nz-option>
+                        <nz-option [nzLabel]="'Single'" [nzValue]="'Single'"></nz-option>
+                        <nz-option [nzLabel]="'Married'" [nzValue]="'Married'"></nz-option>
+                        <nz-option [nzLabel]="'Divorced'" [nzValue]="'Divorced'"></nz-option>
+                        <nz-option [nzLabel]="'Widowed'" [nzValue]="'Widowed'"></nz-option>
+                      </nz-select>
+                    </nz-input-group>
+              </nz-form-control>
+              </nz-form-item>
+            </div> 
+          </div>
+          
+          <div class="section">
+            <h2>Contact Information</h2>
+            <div class="password1">
+              <nz-form-item>
+                <nz-form-control [nzSpan]="5">
+                  <nz-input-group nzCompact>
+                      <nz-select formControlName="residential_country">
+                        <nz-option [nzLabel]="'Residential Country'" [nzValue]="''"></nz-option>
+                        <nz-option [nzLabel]="'Malaysia'" [nzValue]="'Malaysia'"></nz-option>
+                      </nz-select>
+                    </nz-input-group>
+              </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div class="password2">
+              <nz-form-item>
+                <nz-form-control [nzSpan]=13>
+                  <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate">
+                    <ng-template #addOnBeforeTemplate>
+                      <nz-select formControlName="dialing_code" class="phone-select">
+                        <nz-option nzLabel="+60(Malaysia)" nzValue="+60(Malaysia)"></nz-option>
+                        <nz-option nzLabel="+47(Norway)" nzValue="+87(Norway)"></nz-option>
+                      </nz-select>
+                    </ng-template>
+                    <input formControlName="mobileNo" id="'phoneNumber'" nz-input />
+                  </nz-input-group>
+                </nz-form-control>
+            </nz-form-item>
+            </div>
+          </div>
+
+          <div class="section">
+            <nz-form-item *ngFor="let control of listOfControl; let i = index">
+              <nz-form-control [nzSpan]=12 *ngIf="i==0">
+                <input
+                  nz-input
+                  placeholder="Registered Address (As per NRIC/Passport)"
+                  [attr.id]="control.id"
+                  [formControlName]="control.controlInstance"
+                />
+              </nz-form-control>
+              <nz-form-control [nzSpan]=12 *ngIf="i==1">
+                <input
+                  nz-input
+                  placeholder="Registered Address 2"
+                  [attr.id]="control.id"
+                  [formControlName]="control.controlInstance"
+                />
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-control>
+                <button nz-button nzType="text" class="add-button" (click)="addField($event)" *ngIf="this.listOfControl.length<2">
+                  <i nz-icon nzType="plus"></i>
+                  Add Line
+                </button>
+              </nz-form-control>
+            </nz-form-item>
+
+            <div class="postal-city-state">
+              <div class="password1">
+                <nz-form-item>
+                  <nz-form-control>
+                    <input formControlName="postal_code" nz-input placeholder="Postal Code"/>
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div class="password1">
+                <nz-form-item>
+                  <nz-form-control>
+                    <input formControlName="city" nz-input placeholder="City"/>
+                </nz-form-control>
+                </nz-form-item>
+              </div> 
+              <div class="password2">
+                <nz-form-item>
+                  <nz-form-control [nzSpan]="5">
+                    <nz-input-group nzCompact>
+                        <nz-select formControlName="state">
+                          <nz-option [nzLabel]="'State'" [nzValue]="''"></nz-option>
+                          <nz-option [nzLabel]="'Johor'" [nzValue]="'Johor'"></nz-option>
+                          <nz-option [nzLabel]="'Kedah'" [nzValue]="'Kedah'"></nz-option>
+                          <nz-option [nzLabel]="'Kelantan'" [nzValue]="'Kelantan'"></nz-option>
+                          <nz-option [nzLabel]="'Melaka'" [nzValue]="'Melaka'"></nz-option>
+                        </nz-select>
+                      </nz-input-group>
+                </nz-form-control>
+                </nz-form-item>
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <div class="mailing-address-section">
+              <h2>Is your mailing address the same as your registered address?</h2>
+              <nz-form-item>
+                <nz-form-control [nzSpan]="10">
+                  <nz-radio-group nzButtonStyle="solid" formControlName="mailing_address"> <!--[(ngModel)]="radioValue" (ngModelchange)="check_mailing_address($event)"-->
+                      <label nz-radio-button nzValue="Yes">Yes</label>
+                      <label nz-radio-button nzValue="No">No</label>
+                    </nz-radio-group>
+                </nz-form-control>
+              </nz-form-item>
+              <div class="mailing-address-warning">
+                <nz-alert
+                nzType="warning"
+                nzDescription="Kindly ensure that your MAILING ADDRESS entered is the same address
+                reflected in the supporting documents that you will be uploading later."
+                nzShowIcon
+                ></nz-alert>
+              </div>
+            </div>
+            <div class="mailing-hiding-section">
+              <nz-form-item>
+                <nz-form-control [nzSpan]="5">
+                  <nz-input-group nzCompact>
+                      <nz-select formControlName="mailingCountry">
+                        <nz-option [nzLabel]="'Mailing Country'" [nzValue]="''"></nz-option>
+                        <nz-option [nzLabel]="'Aruba'" [nzValue]="'Aruba'"></nz-option>
+                        <nz-option [nzLabel]="'Brazil'" [nzValue]="'Brazil'"></nz-option>
+                      </nz-select>
+                    </nz-input-group>
+              </nz-form-control>
+              </nz-form-item>
+              <nz-form-item *ngFor="let control of listOfControl_mail; let i = index">
+                <nz-form-control [nzSpan]=12 *ngIf="i==0">
+                  <input
+                    nz-input
+                    placeholder="Mailing Address"
+                    [attr.id]="control.id"
+                    [formControlName]="control.controlInstance"
+                  />
+                </nz-form-control>
+                <nz-form-control [nzSpan]=12 *ngIf="i==1">
+                  <input
+                    nz-input
+                    placeholder="Mailing Address 2"
+                    [attr.id]="control.id"
+                    [formControlName]="control.controlInstance"
+                  />
+                </nz-form-control>
+              </nz-form-item>
+              <nz-form-item>
+                <nz-form-control>
+                  <button nz-button nzType="text" class="add-button" (click)="addFieldMail($event)" *ngIf="this.listOfControl_mail.length<2">
+                    <i nz-icon nzType="plus"></i>
+                    Add Line
+                  </button>
+                </nz-form-control>
+              </nz-form-item>
+
+              <div class="postal-city-state">
+                <div class="password1">
+                  <nz-form-item>
+                    <nz-form-control>
+                      <input formControlName="postal_code_mail" nz-input placeholder="Postal Code"/>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+                <div class="password1">
+                  <nz-form-item>
+                    <nz-form-control>
+                      <input formControlName="city_mail" nz-input placeholder="City"/>
+                  </nz-form-control>
+                  </nz-form-item>
+                </div> 
+                <div class="password2">
+                  <nz-form-item>
+                    <nz-form-control [nzSpan]="5">
+                      <nz-input-group nzCompact>
+                          <nz-select formControlName="state_mail">
+                            <nz-option [nzLabel]="'State'" [nzValue]="''"></nz-option>
+                            <nz-option [nzLabel]="'Johor'" [nzValue]="'Johor'"></nz-option>
+                            <nz-option [nzLabel]="'Kedah'" [nzValue]="'Kedah'"></nz-option>
+                            <nz-option [nzLabel]="'Kelantan'" [nzValue]="'Kelantan'"></nz-option>
+                            <nz-option [nzLabel]="'Melaka'" [nzValue]="'Melaka'"></nz-option>
+                          </nz-select>
+                        </nz-input-group>
+                  </nz-form-control>
+                  </nz-form-item>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h2>Supporting Document</h2>
+            <!--<div class="input-method">
+              <nz-card style="width:250px;height: 250px;">
+                  <div class="input-method-button-section">
+                      <div class="button-section">
+                          <button nz-button nzType="text" ><img src="../../assets/upload-nric-icon.svg"></button>
+                      </div>
+                  </div>
+              </nz-card>
+            </div>-->
+            <nz-upload [(nzFileList)]="fileList" [nzBeforeUpload]="beforeUpload">
+              <button nz-button>
+                <i nz-icon nzType="upload"></i>
+                Select File
+              </button>
+            </nz-upload>
+
+            <div class="support-doc-label">
+              Example: Driving License, Bank Statement or EPF Statement
+            </div>
+            <div class="mailing-address-warning">
+              <nz-alert
+              nzType="warning"
+              nzDescription="Kindly ensure that the address on your supporting document matches your mailing address and it must be latest or not later than 3 months."
+              nzShowIcon
+              ></nz-alert>
+            </div>
+          </div>
+
+          <div class="section">
+            <h2>Do you hold any permanent resident status in a country or territory outside Malaysia?</h2>
+            <nz-form-item>
+              <nz-form-control [nzSpan]="10">
+                  <nz-radio-group nzButtonStyle="solid" formControlName="resident_status">
+                      <label nz-radio-button nzValue="Yes">Yes</label>
+                      <label nz-radio-button nzValue="No">No</label>
+                    </nz-radio-group>
+              </nz-form-control>
+          </nz-form-item>
+          </div>
+
+          <div class="section">
+            <button nz-button nzType="primary" class="basic-info-button" (click)="back()">Back</button>
+            <button nz-button nzType="primary" class="basic-info-button" (click)="saveAndContinue()">Save & Continue</button>
+          </div>
+        </form>
+    </div>
+</div>
+<app-footer></app-footer>

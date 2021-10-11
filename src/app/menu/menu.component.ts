@@ -38,4 +38,20 @@ export class MenuComponent implements OnInit {
       return false;
     }
   }
+
+  isBasicInfo(): boolean{
+    if(localStorage.getItem('step')=="basicInformation"){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  isFinancialInfo(): boolean{
+    if(localStorage.getItem('step')=="financialInformation"){
+      return true;
+    }else{
+      return false;
+    }
+  }
 }

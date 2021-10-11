@@ -24,6 +24,7 @@ import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 
 import { AccountInfoComponent } from './account-info/account-info.component';
 import { HeaderComponent } from './header/header.component';
@@ -68,7 +69,8 @@ registerLocaleData(en);
     NzCardModule,
     NzUploadModule,
     NzMessageModule,
-    NzDatePickerModule
+    NzDatePickerModule,
+    NzCheckboxModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]

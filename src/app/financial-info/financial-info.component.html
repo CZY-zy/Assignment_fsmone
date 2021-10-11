@@ -1,0 +1,141 @@
+<app-header></app-header>
+
+<app-menu></app-menu>
+
+<div class="content">
+
+  <div class="content-header">
+    <h1>Financial Information</h1>
+    Input your employment and funding resources.
+  </div>
+
+    <form nz-form [formGroup]="financialInfoForm" (ngSubmit)="submitFinancialInfoForm()">
+      <div class="section">
+        <nz-form-item>
+          <nz-form-control [nzSpan]="8">
+              <nz-input-group nzCompact>
+                  <nz-select formControlName="occupation">
+                    <nz-option [nzLabel]="'Occupation'" [nzValue]="''"></nz-option>
+                    <nz-option [nzLabel]="'Occupation1'" [nzValue]="'Occupation1'"></nz-option>
+                    <nz-option [nzLabel]="'Occupation2'" [nzValue]="'Occupation2'"></nz-option>
+                    <nz-option [nzLabel]="'Occupation3'" [nzValue]="'Occupation3'"></nz-option>
+                    <nz-option [nzLabel]="'Occupation4'" [nzValue]="'Occupation4'"></nz-option>
+                  </nz-select>
+                </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control [nzSpan]="8">
+              <nz-input-group nzCompact>
+                  <nz-select formControlName="business_nature">
+                    <nz-option [nzLabel]="'Busienss Nature'" [nzValue]="''"></nz-option>
+                    <nz-option [nzLabel]="'Busienss Nature1'" [nzValue]="'busienssNature1'"></nz-option>
+                    <nz-option [nzLabel]="'Busienss Nature2'" [nzValue]="'busienssNature2'"></nz-option>
+                    <nz-option [nzLabel]="'Busienss Nature3'" [nzValue]="'busienssNature3'"></nz-option>
+                    <nz-option [nzLabel]="'Busienss Nature4'" [nzValue]="'busienssNature4'"></nz-option>
+                  </nz-select>
+                </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control [nzSpan]="14">
+              <nz-input-group>
+                  <input type="text" formControlName="company_name" nz-input placeholder="Full Name of Company">
+              </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control [nzSpan]="8">
+              <nz-input-group nzCompact>
+                  <nz-select formControlName="annual_income">
+                    <nz-option [nzLabel]="'Annual Income'" [nzValue]="''"></nz-option>
+                    <nz-option [nzLabel]="'MYR150,001'" [nzValue]="'MYR150,001'"></nz-option>
+                    <nz-option [nzLabel]="'Annual Income2'" [nzValue]="'Anuual Income2'"></nz-option>
+                    <nz-option [nzLabel]="'Annual Income3'" [nzValue]="'Anuual Income3'"></nz-option>
+                    <nz-option [nzLabel]="'Annual Income4'" [nzValue]="'Anuual Income4'"></nz-option>
+                  </nz-select>
+                </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control [nzSpan]="8">
+              <nz-input-group nzCompact>
+                  <nz-select formControlName="invesment_source_of_fund">
+                    <nz-option [nzLabel]="'Invesment Source Of Fund'" [nzValue]="''"></nz-option>
+                    <nz-option [nzLabel]="'Invesment Income'" [nzValue]="'Invesment Income'"></nz-option>
+                    <nz-option [nzLabel]="'Invesment Source Of Fund2'" [nzValue]="'Invesment Source Of Fund2'"></nz-option>
+                    <nz-option [nzLabel]="'Invesment Source Of Fund3'" [nzValue]="'Invesment Source Of Fund'"></nz-option>
+                    <nz-option [nzLabel]="'Invesment Source Of Fund4'" [nzValue]="'Invesment Source Of Fund'"></nz-option>
+                  </nz-select>
+                </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <div class="form-warning-section">
+          <nz-alert
+          nzType="warning"
+          nzDescription="Source of funds refers to the origin of the particular funds or other assests which
+          are the subject of business relations (e.g the amounts being invested, deposited, or wired as part of 
+          the business relations)."
+          nzShowIcon
+          ></nz-alert>
+        </div>
+
+        <nz-form-item>
+          <nz-form-control [nzSpan]="8">
+              <nz-input-group nzCompact>
+                  <nz-select formControlName="estimated_networth">
+                    <nz-option [nzLabel]="'Estimated Networth'" [nzValue]="''"></nz-option>
+                    <nz-option [nzLabel]="'Estimated Networth1'" [nzValue]="'Estimated Networth1'"></nz-option>
+                    <nz-option [nzLabel]="'Estimated Networth2'" [nzValue]="'Estimated Networth2'"></nz-option>
+                    <nz-option [nzLabel]="'Estimated Networth3'" [nzValue]="'Estimated Networth3'"></nz-option>
+                    <nz-option [nzLabel]="'Estimated Networth4'" [nzValue]="'Estimated Networth4'"></nz-option>
+                  </nz-select>
+                </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <div class="form-warning-section">
+          <nz-alert
+          nzType="warning"
+          nzDescription="Net-worth refers to the amount by which total assests/ joint assests with his or her spouse (e.g market
+          value of your vehicles, money in your invesment accounts. EPF, savings. value of jewellery, etc.) exceed total liabilities/ jointliabilities
+          with his or her spouse (e.g loans, credit cards, etc.). This shall include the value of your primary residence."
+          nzShowIcon
+          ></nz-alert>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Are you a Politically Exposed Person (PEP)/ close associate of a PEP/ family member of PEP?</h2>
+              <nz-form-item>
+                <nz-form-control [nzSpan]="10">
+                  <nz-radio-group nzButtonStyle="solid" formControlName="pep_status">
+                      <label nz-radio-button nzValue="Yes">Yes</label>
+                      <label nz-radio-button nzValue="No">No</label>
+                    </nz-radio-group>
+                </nz-form-control>
+              </nz-form-item>
+      </div>
+
+      <div class="section">
+        <h2>EPF Invesment Information (Optional)</h2>
+        <nz-form-item>
+          <nz-form-control [nzSpan]="14">
+              <nz-input-group>
+                  <input type="text" formControlName="epf_account_no" nz-input placeholder="EPF Account No.">
+              </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <label nz-checkbox>Is your account under EPF Simpanan Shariah?</label> `
+        </nz-form-item>
+      </div>
+
+      <div class="section">
+        <button nz-button nzType="primary" class="financial-info-button" (click)="back()">Back</button>
+        <button nz-button nzType="primary" class="financial-info-button" (click)="saveAndContinue()">Save & Continue</button>
+      </div>
+
+    </form>
+</div>
+
+<app-footer></app-footer>

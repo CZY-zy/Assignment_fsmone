@@ -1,0 +1,59 @@
+.password1 {
+    float: left;
+    width:14rem;
+    position: relative;
+  }
+
+  .password2{
+    float: left;
+    width: 10rem;
+    position: relative;
+  }
+
+::ng-deep .ant-picker { 
+    height: 3rem;
+}
+
+::ng-deep .ant-select-single.ant-select-show-arrow .ant-select-selection-item, .ant-select-single.ant-select-show-arrow .ant-select-selection-placeholder {
+    width: 5rem;
+}
+
+::ng-deep .ant-input-group.ant-input-group-compact>.ant-cascader-picker-focused:last-child .ant-input, .ant-input-group.ant-input-group-compact>.ant-cascader-picker:last-child .ant-input, .ant-input-group.ant-input-group-compact>.ant-select:last-child>.ant-select-selector, .ant-input-group.ant-input-group-compact>:last-child {
+    margin-left: -0.15rem;
+    width: 13rem;
+}
+
+.basic-info-button {
+  margin-top: 2.5rem;
+  margin-right: 1.5rem;
+  width: 8rem;
+}
+
+.postal-city-state{
+  margin-top: -1.0rem;
+  position: absolute;
+}
+
+.postal-city-state>.password1{
+  margin-right: 2rem;
+}
+
+.postal-city-state>.password2{
+  margin-top: -0.3rem;
+}
+
+::ng-deep .ant-alert-warning .ant-alert-icon {
+  color: orange;
+}
+
+::ng-deep .ant-alert-warning {
+  margin-left: -1.5rem;
+  width: 30rem;
+}
+
+.input-method-button-section{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
