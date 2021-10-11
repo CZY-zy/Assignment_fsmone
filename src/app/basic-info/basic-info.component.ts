@@ -37,10 +37,10 @@ export class BasicInfoComponent implements OnInit {
   }
 
   basicInfoForm = new FormGroup({
-    citizenship: new FormControl('this.accountInfoObject.citizenship', Validators.compose([
+    citizenship: new FormControl('', Validators.compose([
       Validators.required
     ])),
-    nric: new FormControl('sdj', Validators.compose([
+    nric: new FormControl('', Validators.compose([
       Validators.required
     ])),
     gender: new FormControl('',Validators.compose([
@@ -189,11 +189,14 @@ export class BasicInfoComponent implements OnInit {
     this.router.navigateByUrl('financial-info');
   }
 
-  /*radioValue!:string;
+  radioValue!:string;
   $event: any;
 
   check_mailing_address($event: any){
+
     console.log('test')
-    console.log($event)
-  }*/
+
+    console.log(this.basicInfoForm.get('mailing_address'))
+
+  }
 }

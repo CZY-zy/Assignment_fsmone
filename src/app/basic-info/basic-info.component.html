@@ -222,7 +222,7 @@
               <h2>Is your mailing address the same as your registered address?</h2>
               <nz-form-item>
                 <nz-form-control [nzSpan]="10">
-                  <nz-radio-group nzButtonStyle="solid" formControlName="mailing_address"> <!--[(ngModel)]="radioValue" (ngModelchange)="check_mailing_address($event)"-->
+                  <nz-radio-group nzButtonStyle="solid" formControlName="mailing_address" (change)="check_mailing_address($event)"> <!--[(ngModel)]="radioValue" (ngModelchange)="check_mailing_address($event)"-->
                       <label nz-radio-button nzValue="Yes">Yes</label>
                       <label nz-radio-button nzValue="No">No</label>
                     </nz-radio-group>
