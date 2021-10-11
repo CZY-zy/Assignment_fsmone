@@ -23,6 +23,7 @@ import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzMessageModule } from 'ng-zorro-antd/message';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 
 import { AccountInfoComponent } from './account-info/account-info.component';
 import { HeaderComponent } from './header/header.component';
@@ -31,6 +32,7 @@ import { MenuComponent } from './menu/menu.component';
 import { TaxInfoComponent } from './tax-info/tax-info.component';
 import { SupportingDocComponent } from './supporting-doc/supporting-doc.component';
 import { BasicInfoComponent } from './basic-info/basic-info.component';
+import { FinancialInfoComponent } from './financial-info/financial-info.component';
 
 registerLocaleData(en);
 
@@ -43,7 +45,8 @@ registerLocaleData(en);
     MenuComponent,
     TaxInfoComponent,
     SupportingDocComponent,
-    BasicInfoComponent
+    BasicInfoComponent,
+    FinancialInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +67,8 @@ registerLocaleData(en);
     NzAlertModule,
     NzCardModule,
     NzUploadModule,
-    NzMessageModule
+    NzMessageModule,
+    NzDatePickerModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]

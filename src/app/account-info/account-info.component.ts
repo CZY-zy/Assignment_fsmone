@@ -112,29 +112,34 @@ export class AccountInfoComponent implements OnInit {
 
   createAccountInfo(): void{
 
-    this.user_id = this.accountInfoForm.value.user_id;
+    var accountInfoObject ={
 
-    this.password=this.accountInfoForm.value.password;
+    user_id: this.accountInfoForm.value.user_id,
 
-    this.citizenship = this.accountInfoForm.value.citizenship;
+    password: this.accountInfoForm.value.password,
 
-    this.nric = this.accountInfoForm.value.nric;
+    citizenship: this.accountInfoForm.value.citizenship,
 
-    this.nric_type = this.accountInfoForm.value.nric_type;
+    nric: this.accountInfoForm.value.nric,
 
-    this.salutation = this.accountInfoForm.value.salutation;
+    nric_type: this.accountInfoForm.value.nric_type,
 
-    this.salutation = this.accountInfoForm.value.salutation;
+    salutation: this.accountInfoForm.value.salutation,
 
-    this.dialing_code = this.accountInfoForm.value.dialing_code;
+    name: this.accountInfoForm.value.name,
 
-    this.mobileNo = this.accountInfoForm.value.mobileNo;
+    dialing_code: this.accountInfoForm.value.dialing_code,
 
-    this.email = this.accountInfoForm.value.email;
+    mobileNo: this.accountInfoForm.value.mobileNo,
 
-    this.referrer_account_no = this.accountInfoForm.value.referrer_account_no;
+    email: this.accountInfoForm.value.email,
 
-    this.referrer_name = this.accountInfoForm.value.referrer_name;
+    referrer_account_no: this.accountInfoForm.value.referrer_account_no,
+
+    referrer_name: this.accountInfoForm.value.referrer_name,
+    };
+
+    localStorage.setItem('accountInfoObject', JSON.stringify(accountInfoObject));
 
     this.router.navigateByUrl('tax-info');
   }

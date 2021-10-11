@@ -7,8 +7,13 @@
     min-height: 490px;
 }
 
+.content-header{
+    margin-bottom: 5px;
+}
+
 .section {
     margin: 5rem 0;
+    clear: both;
 }
 
 input {
