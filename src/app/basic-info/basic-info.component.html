@@ -16,16 +16,16 @@
             <h2>Are you a Malaysian citizen?</h2>
             <nz-form-item>
               <nz-form-control [nzSpan]="10">
-                  <nz-radio-group nzButtonStyle="solid" formControlName="citizenship">
-                      <label nz-radio-button nzValue="Yes">Yes</label>
-                      <label nz-radio-button nzValue="No">No</label>
+                  <nz-radio-group nzButtonStyle="solid" formControlName="citizenship" [(ngModel)]="readCitizenship">
+                      <label nz-radio-button nzValue="Yes" nzDisabled>Yes</label>
+                      <label nz-radio-button nzValue="No" nzDisabled>No</label>
                     </nz-radio-group>
               </nz-form-control>
           </nz-form-item>
           <nz-form-item>
             <nz-form-control [nzSpan]="12">
                 <nz-input-group>
-                    <input type="text" formControlName="nric" nz-input>
+                    <input nz-input formControlName="nric" nz-input [(ngModel)]="readNric" [disabled]="true">
                 </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -46,7 +46,7 @@
               <nz-form-item>
                 <nz-form-control [nzSpan]="3">
                     <nz-input-group nzCompact>
-                        <nz-select formControlName="salutation">
+                        <nz-select formControlName="salutation" [(ngModel)]="readSalutation">
                           <nz-option [nzLabel]="'Salutation'" [nzValue]="''"></nz-option>
                           <nz-option [nzLabel]="'Dr'" [nzValue]="'Dr'"></nz-option>
                           <nz-option [nzLabel]="'Mdm'" [nzValue]="'Mdm'"></nz-option>
@@ -66,7 +66,7 @@
               <nz-form-item>
                 <nz-form-control [nzSpan]="14">
                     <nz-input-group>
-                        <input type="text" formControlName="name" nz-input>
+                        <input type="text" formControlName="name" nz-input [(ngModel)]="readName">
                     </nz-input-group>
                 </nz-form-control>
               </nz-form-item>
@@ -95,6 +95,11 @@
                       </nz-input-group>
                 </nz-form-control>
               </nz-form-item>
+              <div *ngIf="race_validation">
+                <div class="alert-danger" *ngIf="basicInfoForm.controls['race'].hasError('required')">
+                  <nz-alert nzBanner nzMessage={{blankMessage}} ></nz-alert>
+                </div>
+              </div>
             </div>
             <div class="password1">
               <nz-form-item>
@@ -122,6 +127,11 @@
                     </nz-input-group>
               </nz-form-control>
               </nz-form-item>
+              <div *ngIf="marital_status_validation">
+                <div class="alert-danger" *ngIf="basicInfoForm.controls['marital_status'].hasError('required')">
+                  <nz-alert nzBanner nzMessage={{blankMessage}} ></nz-alert>
+                </div>
+              </div>
             </div> 
           </div>
           
@@ -144,12 +154,12 @@
                 <nz-form-control [nzSpan]=13>
                   <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate">
                     <ng-template #addOnBeforeTemplate>
-                      <nz-select formControlName="dialing_code" class="phone-select">
+                      <nz-select formControlName="dialing_code" class="phone-select" [(ngModel)]="readDialingCode">
                         <nz-option nzLabel="+60(Malaysia)" nzValue="+60(Malaysia)"></nz-option>
                         <nz-option nzLabel="+47(Norway)" nzValue="+87(Norway)"></nz-option>
                       </nz-select>
                     </ng-template>
-                    <input formControlName="mobileNo" id="'phoneNumber'" nz-input />
+                    <input formControlName="mobileNo" id="'phoneNumber'" nz-input [(ngModel)]="readMobileNo">
                   </nz-input-group>
                 </nz-form-control>
             </nz-form-item>
@@ -190,6 +200,11 @@
                   <nz-form-control>
                     <input formControlName="postal_code" nz-input placeholder="Postal Code"/>
                   </nz-form-control>
+                  <div *ngIf="postal_validation">
+                    <div class="alert-danger" *ngIf="basicInfoForm.controls['postal_code'].hasError('required')">
+                      <nz-alert nzBanner nzMessage={{blankMessage}} ></nz-alert>
+                    </div>
+                  </div>
                 </nz-form-item>
               </div>
               <div class="password1">
@@ -197,6 +212,11 @@
                   <nz-form-control>
                     <input formControlName="city" nz-input placeholder="City"/>
                 </nz-form-control>
+                <div *ngIf="city_validation">
+                  <div class="alert-danger" *ngIf="basicInfoForm.controls['city'].hasError('required')">
+                    <nz-alert nzBanner nzMessage={{blankMessage}} ></nz-alert>
+                  </div>
+                </div>
                 </nz-form-item>
               </div> 
               <div class="password2">
@@ -212,6 +232,11 @@
                         </nz-select>
                       </nz-input-group>
                 </nz-form-control>
+                <div *ngIf="state_validation">
+                  <div class="alert-danger" *ngIf="basicInfoForm.controls['state'].hasError('required')">
+                    <nz-alert nzBanner nzMessage={{blankMessage}} ></nz-alert>
+                  </div>
+                </div>
                 </nz-form-item>
               </div>
             </div>
@@ -222,7 +247,8 @@
               <h2>Is your mailing address the same as your registered address?</h2>
               <nz-form-item>
                 <nz-form-control [nzSpan]="10">
-                  <nz-radio-group nzButtonStyle="solid" formControlName="mailing_address" (change)="check_mailing_address($event)"> <!--[(ngModel)]="radioValue" (ngModelchange)="check_mailing_address($event)"-->
+                  <nz-radio-group nzButtonStyle="solid" formControlName="mailing_address" [(ngModel)]="radioValue" (ngModelChange)="check_mailing_address($event)"> 
+                    <!--[(ngModel)]="radioValue" (ngModelChange)="check_mailing_address($event)"-->
                       <label nz-radio-button nzValue="Yes">Yes</label>
                       <label nz-radio-button nzValue="No">No</label>
                     </nz-radio-group>
@@ -237,7 +263,7 @@
                 ></nz-alert>
               </div>
             </div>
-            <div class="mailing-hiding-section">
+            <div class="mailing-hiding-section" *ngIf=isMailingVisible>
               <nz-form-item>
                 <nz-form-control [nzSpan]="5">
                   <nz-input-group nzCompact>
@@ -283,6 +309,9 @@
                       <input formControlName="postal_code_mail" nz-input placeholder="Postal Code"/>
                     </nz-form-control>
                   </nz-form-item>
+                  <div class="alert-danger" *ngIf="postal_validation">
+                    <nz-alert nzBanner nzMessage={{blankMessage}} ></nz-alert>
+                  </div>
                 </div>
                 <div class="password1">
                   <nz-form-item>
@@ -358,5 +387,6 @@
           </div>
         </form>
     </div>
+    <!--<input nz-input nz-input [(ngModel)]="readNric" [disabled]="true">-->
 </div>
 <app-footer></app-footer>

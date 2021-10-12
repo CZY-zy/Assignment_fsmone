@@ -16,27 +16,37 @@
               <nz-input-group nzCompact>
                   <nz-select formControlName="occupation">
                     <nz-option [nzLabel]="'Occupation'" [nzValue]="''"></nz-option>
-                    <nz-option [nzLabel]="'Occupation1'" [nzValue]="'Occupation1'"></nz-option>
-                    <nz-option [nzLabel]="'Occupation2'" [nzValue]="'Occupation2'"></nz-option>
-                    <nz-option [nzLabel]="'Occupation3'" [nzValue]="'Occupation3'"></nz-option>
-                    <nz-option [nzLabel]="'Occupation4'" [nzValue]="'Occupation4'"></nz-option>
+                    <nz-option [nzLabel]="'Accomodation/Hotel'" [nzValue]="'Accomodation/Hotel'"></nz-option>
+                    <nz-option [nzLabel]="'Accounting/Finance/Banking'" [nzValue]="'Accounting/Finance/Banking'"></nz-option>
+                    <nz-option [nzLabel]="'Agriculture'" [nzValue]="'Agriculture'"></nz-option>
+                    <nz-option [nzLabel]="'Automotive/Airlines'" [nzValue]="'Automotive/Airlines'"></nz-option>
                   </nz-select>
                 </nz-input-group>
           </nz-form-control>
         </nz-form-item>
+        <div *ngIf="occupation_validation">
+          <div class="alert-danger" *ngIf="financialInfoForm.controls['occupation'].hasError('required')">
+            <nz-alert nzBanner nzMessage={{blankMessage}} ></nz-alert>
+          </div>
+        </div>
         <nz-form-item>
           <nz-form-control [nzSpan]="8">
               <nz-input-group nzCompact>
                   <nz-select formControlName="business_nature">
                     <nz-option [nzLabel]="'Busienss Nature'" [nzValue]="''"></nz-option>
-                    <nz-option [nzLabel]="'Busienss Nature1'" [nzValue]="'busienssNature1'"></nz-option>
-                    <nz-option [nzLabel]="'Busienss Nature2'" [nzValue]="'busienssNature2'"></nz-option>
-                    <nz-option [nzLabel]="'Busienss Nature3'" [nzValue]="'busienssNature3'"></nz-option>
-                    <nz-option [nzLabel]="'Busienss Nature4'" [nzValue]="'busienssNature4'"></nz-option>
+                    <nz-option [nzLabel]="'Audit/Accounting/Tax/Legal/Company Secretary'" [nzValue]="'Audit/Accounting/Tax/Legal/Company Secretary'"></nz-option>
+                    <nz-option [nzLabel]="'Building/Construction Related'" [nzValue]="'Building/Construction Related'"></nz-option>
+                    <nz-option [nzLabel]="'Busienss in Low Density Goods (e.g. Mobile phones/ Clothing)'" [nzValue]="'Busienss in Low Density Goods (e.g. Mobile phones/ Clothing)'"></nz-option>
+                    <nz-option [nzLabel]="'Cash Intensive Business (e.g. Restaurant/ Convenient Store)'" [nzValue]="'Cash Intensive Business (e.g. Restaurant/ Convenient Store)'"></nz-option>
                   </nz-select>
                 </nz-input-group>
           </nz-form-control>
         </nz-form-item>
+        <div *ngIf="business_nature_validation">
+          <div class="alert-danger" *ngIf="financialInfoForm.controls['business_nature'].hasError('required')">
+            <nz-alert nzBanner nzMessage={{blankMessage}} ></nz-alert>
+          </div>
+        </div>
         <nz-form-item>
           <nz-form-control [nzSpan]="14">
               <nz-input-group>
@@ -44,32 +54,53 @@
               </nz-input-group>
           </nz-form-control>
         </nz-form-item>
+        <div *ngIf="company_name_validation">
+          <div class="alert-danger" *ngIf="financialInfoForm.controls['company_name'].hasError('required')">
+            <nz-alert nzBanner nzMessage={{blankMessage}} ></nz-alert>
+          </div>
+        </div>
         <nz-form-item>
           <nz-form-control [nzSpan]="8">
               <nz-input-group nzCompact>
                   <nz-select formControlName="annual_income">
                     <nz-option [nzLabel]="'Annual Income'" [nzValue]="''"></nz-option>
-                    <nz-option [nzLabel]="'MYR150,001'" [nzValue]="'MYR150,001'"></nz-option>
-                    <nz-option [nzLabel]="'Annual Income2'" [nzValue]="'Anuual Income2'"></nz-option>
-                    <nz-option [nzLabel]="'Annual Income3'" [nzValue]="'Anuual Income3'"></nz-option>
-                    <nz-option [nzLabel]="'Annual Income4'" [nzValue]="'Anuual Income4'"></nz-option>
+                    <nz-option [nzLabel]="'Not Applicable'" [nzValue]="'Not Applicable'"></nz-option>
+                    <nz-option [nzLabel]="'Below MYR30,000'" [nzValue]="'Below MYR30,000'"></nz-option>
+                    <nz-option [nzLabel]="'MYR30,000-MYR60,000'" [nzValue]="'MYR30,000-MYR60,000'"></nz-option>
+                    <nz-option [nzLabel]="'MYR60,001-MYR100,000'" [nzValue]="'MYR60,001-MYR100,000'"></nz-option>
+                    <nz-option [nzLabel]="'MYR100,001-MYR150,000'" [nzValue]="'MYR100,001-MYR150,000'"></nz-option>
+                    <nz-option [nzLabel]="'MYR150,001-MYR200,000'" [nzValue]="'MYR150,001-MYR200,000'"></nz-option>
+                    <nz-option [nzLabel]="'MYR200,001-MYR300,000'" [nzValue]="'MYR200,001-MYR300,000'"></nz-option>
+                    <nz-option [nzLabel]="'Above MYR300,000'" [nzValue]="'Above MYR300,000'"></nz-option>
                   </nz-select>
                 </nz-input-group>
           </nz-form-control>
         </nz-form-item>
+        <div *ngIf="annual_income_validation">
+          <div class="alert-danger" *ngIf="financialInfoForm.controls['annual_income'].hasError('required')">
+            <nz-alert nzBanner nzMessage={{blankMessage}} ></nz-alert>
+          </div>
+        </div>
         <nz-form-item>
           <nz-form-control [nzSpan]="8">
               <nz-input-group nzCompact>
                   <nz-select formControlName="invesment_source_of_fund">
                     <nz-option [nzLabel]="'Invesment Source Of Fund'" [nzValue]="''"></nz-option>
+                    <nz-option [nzLabel]="'Business profits'" [nzValue]="'Business profits'"></nz-option>
+                    <nz-option [nzLabel]="'Gitf/Inheritance'" [nzValue]="'Gitf/Inheritance'"></nz-option>
+                    <nz-option [nzLabel]="'Salary'" [nzValue]="'Salary'"></nz-option>
+                    <nz-option [nzLabel]="'Savings'" [nzValue]="'Savings'"></nz-option>
                     <nz-option [nzLabel]="'Invesment Income'" [nzValue]="'Invesment Income'"></nz-option>
-                    <nz-option [nzLabel]="'Invesment Source Of Fund2'" [nzValue]="'Invesment Source Of Fund2'"></nz-option>
-                    <nz-option [nzLabel]="'Invesment Source Of Fund3'" [nzValue]="'Invesment Source Of Fund'"></nz-option>
-                    <nz-option [nzLabel]="'Invesment Source Of Fund4'" [nzValue]="'Invesment Source Of Fund'"></nz-option>
+                    <nz-option [nzLabel]="'Others'" [nzValue]="'Others'"></nz-option>
                   </nz-select>
                 </nz-input-group>
           </nz-form-control>
         </nz-form-item>
+        <div *ngIf="invesment_source_of_fund_validation">
+          <div class="alert-danger" *ngIf="financialInfoForm.controls['invesment_source_of_fund'].hasError('required')">
+            <nz-alert nzBanner nzMessage={{blankMessage}} ></nz-alert>
+          </div>
+        </div>
         <div class="form-warning-section">
           <nz-alert
           nzType="warning"
@@ -85,14 +116,19 @@
               <nz-input-group nzCompact>
                   <nz-select formControlName="estimated_networth">
                     <nz-option [nzLabel]="'Estimated Networth'" [nzValue]="''"></nz-option>
-                    <nz-option [nzLabel]="'Estimated Networth1'" [nzValue]="'Estimated Networth1'"></nz-option>
-                    <nz-option [nzLabel]="'Estimated Networth2'" [nzValue]="'Estimated Networth2'"></nz-option>
-                    <nz-option [nzLabel]="'Estimated Networth3'" [nzValue]="'Estimated Networth3'"></nz-option>
-                    <nz-option [nzLabel]="'Estimated Networth4'" [nzValue]="'Estimated Networth4'"></nz-option>
+                    <nz-option [nzLabel]="'Up to MYR100,000'" [nzValue]="'Up to MYR100,000'"></nz-option>
+                    <nz-option [nzLabel]="'MYR100,000 - MYR500,000'" [nzValue]="'MYR100,000 - MYR500,000'"></nz-option>
+                    <nz-option [nzLabel]="'MYR500,000 - MYR3000,000'" [nzValue]="'MYR500,000 - MYR3000,000'"></nz-option>
+                    <nz-option [nzLabel]="'Above MYR3000,000'" [nzValue]="'Above MYR3000,000'"></nz-option>
                   </nz-select>
                 </nz-input-group>
           </nz-form-control>
         </nz-form-item>
+        <div *ngIf="estimated_networth_validation">
+          <div class="alert-danger" *ngIf="financialInfoForm.controls['estimated_networth'].hasError('required')">
+            <nz-alert nzBanner nzMessage={{blankMessage}} ></nz-alert>
+          </div>
+        </div>
         <div class="form-warning-section">
           <nz-alert
           nzType="warning"

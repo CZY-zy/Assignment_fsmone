@@ -1,6 +1,6 @@
 .password1 {
     float: left;
-    width:14rem;
+    width:20rem;
     position: relative;
   }
 
@@ -56,4 +56,16 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+::ng-deep .ant-radio-button-wrapper-disabled.ant-radio-button-wrapper-checked {
+  color: white;
+  background-color: rgb(118, 118, 189);
+}
+
+.ant-input-group-wrapper {
+  display: inline-block;
+  width: 300px;
+  text-align: start;
+  vertical-align: top;
 }

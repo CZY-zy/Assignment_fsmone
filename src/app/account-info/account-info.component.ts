@@ -167,11 +167,12 @@ export class AccountInfoComponent implements OnInit {
 
   validateConfirmPassword():boolean{
     if(this.accountInfoForm.controls['password2'].invalid){
+      console.log("invalidpassworkd")
       return true;
     }else{
 
       if(this.accountInfoForm.value.password!=this.accountInfoForm.value.password2){
-        console.log("call")
+        console.log("different")
         return true;
       }
 

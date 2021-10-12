@@ -93,12 +93,27 @@ export class SupportingDocComponent implements OnInit {
     return false;
   };
 
+  beforeUpload_back = (file: NzUploadFile): boolean => {
+    this.fileList2 = this.fileList2.concat(file);
+    return false;
+  };
+
   handleUpload(): void {
+
+    console.log(this.fileList)
+    console.log(this.fileList2)
+
     const formData = new FormData();
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     this.fileList.forEach((file: any) => {
       formData.append('files[]', file);
     });
+
+    const formData2 = new FormData();
+    this.fileList2.forEach((file: any) => {
+      formData2.append('files[]', file);
+    });
+
     this.uploading = true;
     // You can use any AJAX library you like
     const req = new HttpRequest('POST', 'https://www.mocky.io/v2/5cc8019d300000980a055e76', formData, {

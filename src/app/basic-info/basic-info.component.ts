@@ -16,10 +16,6 @@ import { NgModule } from '@angular/core';
 })
 export class BasicInfoComponent implements OnInit {
 
-  accountInfoObject;
-  citizenship!: string;
-  nric!:string;
-
   constructor(
     private router: Router,
     private location: Location,
@@ -28,12 +24,6 @@ export class BasicInfoComponent implements OnInit {
     private msg: NzMessageService
   ) {
     localStorage.setItem('step',"basicInformation",);
-
-    var retrieveObject = (localStorage.getItem('accountInfoObject') || '{}');
-
-    this.accountInfoObject = JSON.parse(retrieveObject);
-
-    console.log(this.accountInfoObject)
   }
 
   basicInfoForm = new FormGroup({
@@ -43,7 +33,7 @@ export class BasicInfoComponent implements OnInit {
     nric: new FormControl('', Validators.compose([
       Validators.required
     ])),
-    gender: new FormControl('',Validators.compose([
+    gender: new FormControl('Female',Validators.compose([
       Validators.required
     ])),
     salutation: new FormControl('', Validators.compose([
@@ -85,22 +75,32 @@ export class BasicInfoComponent implements OnInit {
     mailing_address: new FormControl('',Validators.compose([
       Validators.required
     ])),
-    mailingCountry: new FormControl('',Validators.compose([
-      Validators.required
-    ])),
-    postal_code_mail: new FormControl('',Validators.compose([
-      Validators.required
-    ])),
-    city_mail: new FormControl('', Validators.compose([
-      Validators.required
-    ])),
-    state_mail: new FormControl('',Validators.compose([
-      Validators.required
-    ])),
-    resident_status: new FormControl('',Validators.compose([
+    mailingCountry: new FormControl(''),
+    postal_code_mail: new FormControl(''),
+    city_mail: new FormControl(''),
+    state_mail: new FormControl(''),
+    resident_status: new FormControl('No',Validators.compose([
       Validators.required
     ])),
   });
+
+  retrieveObject = (localStorage.getItem('accountInfoObject') || '{}');
+
+  accountInfoObject = JSON.parse(this.retrieveObject);
+
+  disabled = true;
+
+  readCitizenship = this.accountInfoObject.citizenship;
+
+  readNric = this.accountInfoObject.nric;
+
+  readSalutation = this.accountInfoObject.salutation;
+
+  readName = this.accountInfoObject.name;
+
+  readDialingCode = this.accountInfoObject.dialing_code;
+
+  readMobileNo = this.accountInfoObject.mobileNo;
 
   ngOnInit(): void {
     //this.validateForm = this.fb.group({});
@@ -180,23 +180,90 @@ export class BasicInfoComponent implements OnInit {
     return false;
   };
 
+  radioValue = "Yes"
+  $event: any;
+  isMailingVisible = false;
+
+  check_mailing_address($event: any){
+
+    if($event=='No'){
+      this.isMailingVisible = true;
+    }else{
+      this.isMailingVisible = false;
+    }
+
+  }
+
+  //Validators
+
+  blankMessage = "Please make sure this field is not blank.";
+
+  race_validation!: boolean;
+  marital_status_validation!: boolean;
+  postal_validation!:boolean;
+  city_validation!:boolean;
+  state_validation!:boolean;
+
+  validateRace(): boolean{
+    if(this.basicInfoForm.controls['race'].invalid){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  validateMaritalStatus(): boolean{
+    if(this.basicInfoForm.controls['marital_status'].invalid){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  validatePostal(): boolean{
+    if(this.basicInfoForm.controls['postal_code'].invalid){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  validateCity(): boolean{
+    if(this.basicInfoForm.controls['city'].invalid){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  validateState(): boolean{
+    if(this.basicInfoForm.controls['state'].invalid){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
   back(){
     this.location.back();
   }
 
   saveAndContinue(){
+
+    this.race_validation = this.validateRace();
+
+    this.marital_status_validation = this.validateMaritalStatus();
+
+    this.postal_validation = this.validatePostal();
+
+    this.city_validation = this.validateCity();
+
+    this.state_validation = this.validateState();
+
     console.log(this.basicInfoForm.value);
-    this.router.navigateByUrl('financial-info');
-  }
-
-  radioValue!:string;
-  $event: any;
-
-  check_mailing_address($event: any){
-
-    console.log('test')
-
-    console.log(this.basicInfoForm.get('mailing_address'))
-
+    
+    if(!(this.race_validation&&this.marital_status_validation&&this.postal_validation&&this.city_validation&&this.state_validation)){
+      this.router.navigateByUrl('financial-info');
+    }
   }
 }
