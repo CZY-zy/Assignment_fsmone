@@ -27,10 +27,10 @@ export class BasicInfoComponent implements OnInit {
   }
 
   basicInfoForm = new FormGroup({
-    citizenship: new FormControl('', Validators.compose([
+    citizenship: new FormControl({value:'', disabled:true}, Validators.compose([
       Validators.required
     ])),
-    nric: new FormControl('', Validators.compose([
+    nric: new FormControl({value:'', disabled:true}, Validators.compose([
       Validators.required
     ])),
     gender: new FormControl('Female',Validators.compose([
