@@ -1,0 +1,27 @@
+<!-- <app-account-info (newItemEvent)="setBasicInformationValue($event)"></app-account-info>
+
+<app-tax-info></app-tax-info>
+
+<app-supporting-doc></app-supporting-doc>
+
+<app-basic-info [retrievedAccountInformation]="retrievedAccountInformation"></app-basic-info>
+
+<app-financial-info></app-financial-info> -->
+
+<div class="container-component" [ngSwitch]="counter">
+    <div *ngSwitchCase="'1'">
+        <app-tax-info (counter)="setCounter($event)"></app-tax-info>
+    </div>
+    <div *ngSwitchCase="'2'">
+        <app-supporting-doc (counter)="setCounter($event)"></app-supporting-doc>
+    </div>
+    <div *ngSwitchCase="'3'">
+        <app-basic-info [retrievedAccountInformation]="retrievedAccountInformation" (counter)="setCounter($event)"></app-basic-info>
+     </div>
+    <div *ngSwitchCase="'4'">
+        <app-financial-info (counter)="setCounter($event)"></app-financial-info>
+     </div>
+     <div *ngSwitchDefault>
+        <app-account-info (newItemEvent)="setBasicInformationValue($event)" (counter)="setCounter($event)"></app-account-info>
+     </div>
+</div>

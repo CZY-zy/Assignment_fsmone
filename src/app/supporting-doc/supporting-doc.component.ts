@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Observable, Observer } from 'rxjs';
 
@@ -24,6 +24,8 @@ const getBase64 = (file: File): Promise<string | ArrayBuffer | null> =>
   styleUrls: ['./supporting-doc.component.css']
 })
 export class SupportingDocComponent implements OnInit {
+
+  @Output() counter = new EventEmitter<number>();
 
   uploadModel!:string;
 
@@ -154,6 +156,7 @@ export class SupportingDocComponent implements OnInit {
   }
 
   saveAndContinue(){
-    this.router.navigateByUrl('basic-info');
+    this.counter.emit(3);
+    //this.router.navigateByUrl('basic-info');
   }
 }

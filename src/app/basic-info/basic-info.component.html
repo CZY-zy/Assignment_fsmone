@@ -1,5 +1,3 @@
-<app-header></app-header>
-
 <app-menu></app-menu>
 
 <div class="content">
@@ -16,7 +14,7 @@
             <h2>Are you a Malaysian citizen?</h2>
             <nz-form-item>
               <nz-form-control [nzSpan]="10">
-                  <nz-radio-group nzButtonStyle="solid" formControlName="citizenship" [(ngModel)]="readCitizenship">
+                  <nz-radio-group nzButtonStyle="solid" formControlName="citizenship" [(ngModel)]="this.retrievedAccountInformation.citizenship">
                       <label nz-radio-button nzValue="Yes" nzDisabled>Yes</label>
                       <label nz-radio-button nzValue="No" nzDisabled>No</label>
                     </nz-radio-group>
@@ -25,7 +23,7 @@
           <nz-form-item>
             <nz-form-control [nzSpan]="12">
                 <nz-input-group>
-                    <input nz-input formControlName="nric" nz-input [(ngModel)]="readNric" [disabled]="true">
+                    <input nz-input formControlName="nric" nz-input [(ngModel)]="this.retrievedAccountInformation.nric" [disabled]="true">
                 </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -46,7 +44,7 @@
               <nz-form-item>
                 <nz-form-control [nzSpan]="3">
                     <nz-input-group nzCompact>
-                        <nz-select formControlName="salutation" [(ngModel)]="readSalutation">
+                        <nz-select formControlName="salutation" [(ngModel)]="this.retrievedAccountInformation.salutation">
                           <nz-option [nzLabel]="'Salutation'" [nzValue]="''"></nz-option>
                           <nz-option [nzLabel]="'Dr'" [nzValue]="'Dr'"></nz-option>
                           <nz-option [nzLabel]="'Mdm'" [nzValue]="'Mdm'"></nz-option>
@@ -66,7 +64,7 @@
               <nz-form-item>
                 <nz-form-control [nzSpan]="14">
                     <nz-input-group>
-                        <input type="text" formControlName="name" nz-input [(ngModel)]="readName">
+                        <input type="text" formControlName="name" nz-input [(ngModel)]="this.retrievedAccountInformation.name">
                     </nz-input-group>
                 </nz-form-control>
               </nz-form-item>
@@ -154,12 +152,12 @@
                 <nz-form-control [nzSpan]=13>
                   <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate">
                     <ng-template #addOnBeforeTemplate>
-                      <nz-select formControlName="dialing_code" class="phone-select" [(ngModel)]="readDialingCode">
+                      <nz-select formControlName="dialing_code" class="phone-select" [(ngModel)]="this.retrievedAccountInformation.dialing_code">
                         <nz-option nzLabel="+60(Malaysia)" nzValue="+60(Malaysia)"></nz-option>
                         <nz-option nzLabel="+47(Norway)" nzValue="+87(Norway)"></nz-option>
                       </nz-select>
                     </ng-template>
-                    <input formControlName="mobileNo" id="'phoneNumber'" nz-input [(ngModel)]="readMobileNo">
+                    <input formControlName="mobileNo" id="'phoneNumber'" nz-input [(ngModel)]="this.retrievedAccountInformation.mobile_no">
                   </nz-input-group>
                 </nz-form-control>
             </nz-form-item>
@@ -388,4 +386,3 @@
         </form>
     </div>
 </div>
-<app-footer></app-footer>

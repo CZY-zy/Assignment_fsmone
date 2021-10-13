@@ -9,16 +9,18 @@ import { TaxInfoComponent } from './tax-info/tax-info.component';
 import { SupportingDocComponent } from './supporting-doc/supporting-doc.component';
 import { BasicInfoComponent } from './basic-info/basic-info.component';
 import { FinancialInfoComponent } from './financial-info/financial-info.component';
+import { ContainerComponent } from './container/container.component';
 
 const routes: Routes = [
-  {path:'', component: AccountInfoComponent},
+  {path:'', component:ContainerComponent},
   {path:'header', component: HeaderComponent},
   {path:'footer', component: FooterComponent},
   {path:'menu', component:MenuComponent},
   {path:'tax-info', component:TaxInfoComponent},
   {path:'support-doc', component:SupportingDocComponent},
   {path:'basic-info', component:BasicInfoComponent},
-  {path:'financial-info', component: FinancialInfoComponent}
+  {path:'financial-info', component: FinancialInfoComponent},
+  {path:'account-info', component: AccountInfoComponent}
 ];
 
 @NgModule({

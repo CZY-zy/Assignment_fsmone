@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validator, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./tax-info.component.css']
 })
 export class TaxInfoComponent implements OnInit {
+
+  @Output() counter = new EventEmitter<number>();
 
   taxInfoForm = new FormGroup({
     us_citizenship_greencard_passport: new FormControl('No'),
@@ -30,7 +32,8 @@ export class TaxInfoComponent implements OnInit {
     
     //console.log(this.us_citizenship_greencard_passport);
     //console.log(this.my_tax_resident);
-    this.router.navigateByUrl('support-doc');
+    this.counter.emit(2);
+    //this.router.navigateByUrl('support-doc');
   }
 
 }

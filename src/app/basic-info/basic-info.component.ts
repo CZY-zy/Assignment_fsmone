@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validator, ReactiveFormsModule, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
@@ -8,6 +8,7 @@ import { HttpClient, HttpRequest, HttpResponse } from '@angular/common/http';
 import { filter } from 'rxjs/operators';
 import { AccountInfoComponent } from '../account-info/account-info.component';
 import { NgModule } from '@angular/core';
+import { AccountInformation } from '../model/account-information.model';
 
 @Component({
   selector: 'app-basic-info',
@@ -15,6 +16,9 @@ import { NgModule } from '@angular/core';
   styleUrls: ['./basic-info.component.css']
 })
 export class BasicInfoComponent implements OnInit {
+
+  @Input() retrievedAccountInformation = new AccountInformation();
+  @Output() counter = new EventEmitter<number>();
 
   constructor(
     private router: Router,
@@ -90,7 +94,7 @@ export class BasicInfoComponent implements OnInit {
 
   disabled = true;
 
-  readCitizenship = this.accountInfoObject.citizenship;
+  /*readCitizenship = this.accountInfoObject.citizenship;
 
   readNric = this.accountInfoObject.nric;
 
@@ -100,7 +104,7 @@ export class BasicInfoComponent implements OnInit {
 
   readDialingCode = this.accountInfoObject.dialing_code;
 
-  readMobileNo = this.accountInfoObject.mobileNo;
+  readMobileNo = this.accountInfoObject.mobileNo;*/
 
   ngOnInit(): void {
     //this.validateForm = this.fb.group({});
@@ -263,7 +267,7 @@ export class BasicInfoComponent implements OnInit {
     console.log(this.basicInfoForm.value);
     
     if(!(this.race_validation&&this.marital_status_validation&&this.postal_validation&&this.city_validation&&this.state_validation)){
-      this.router.navigateByUrl('financial-info');
+      this.counter.emit(4);
     }
   }
 }

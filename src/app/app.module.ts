@@ -34,6 +34,7 @@ import { TaxInfoComponent } from './tax-info/tax-info.component';
 import { SupportingDocComponent } from './supporting-doc/supporting-doc.component';
 import { BasicInfoComponent } from './basic-info/basic-info.component';
 import { FinancialInfoComponent } from './financial-info/financial-info.component';
+import { ContainerComponent } from './container/container.component';
 
 registerLocaleData(en);
 
@@ -47,7 +48,8 @@ registerLocaleData(en);
     TaxInfoComponent,
     SupportingDocComponent,
     BasicInfoComponent,
-    FinancialInfoComponent
+    FinancialInfoComponent,
+    ContainerComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validator, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AccountInformation } from '../model/account-information.model';
 
 @Component({
   selector: 'app-account-info',
@@ -8,6 +9,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./account-info.component.css']
 })
 export class AccountInfoComponent implements OnInit {
+
+  @Output() newItemEvent = new EventEmitter<AccountInformation>();
+  @Output() counter = new EventEmitter<number>();
+
+  accountInfoObject: AccountInformation = new AccountInformation();
 
   accountInfoForm = new FormGroup({
     user_id: new FormControl('', Validators.compose([
@@ -63,19 +69,6 @@ export class AccountInfoComponent implements OnInit {
     });*/
   }
 
-  user_id!:string;
-  password!:string;
-  citizenship!:string;
-  nric!:string;
-  nric_type!:string;
-  salutation!:string;
-  name!:string;
-  dialing_code!:string;
-  mobileNo!:string;
-  email!:string;
-  referrer_account_no!:string;
-  referrer_name!:string;
-
   user_validation!: boolean;
   password_validation!: boolean;
   password2_validation!: boolean;
@@ -112,36 +105,37 @@ export class AccountInfoComponent implements OnInit {
 
   createAccountInfo(): void{
 
-    var accountInfoObject ={
+    this.accountInfoObject.user_id = this.accountInfoForm.value.user_id,
 
-    user_id: this.accountInfoForm.value.user_id,
+    this.accountInfoObject.password = this.accountInfoForm.value.password,
 
-    password: this.accountInfoForm.value.password,
+    this.accountInfoObject.citizenship = this.accountInfoForm.value.citizenship,
 
-    citizenship: this.accountInfoForm.value.citizenship,
+    this.accountInfoObject.nric = this.accountInfoForm.value.nric,
 
-    nric: this.accountInfoForm.value.nric,
+    this.accountInfoObject.nric_type = this.accountInfoForm.value.nric_type,
 
-    nric_type: this.accountInfoForm.value.nric_type,
+    this.accountInfoObject.salutation = this.accountInfoForm.value.salutation,
 
-    salutation: this.accountInfoForm.value.salutation,
+    this.accountInfoObject.name = this.accountInfoForm.value.name,
 
-    name: this.accountInfoForm.value.name,
+    this.accountInfoObject.dialing_code = this.accountInfoForm.value.dialing_code,
 
-    dialing_code: this.accountInfoForm.value.dialing_code,
+    this.accountInfoObject.mobile_no = this.accountInfoForm.value.mobileNo,
 
-    mobileNo: this.accountInfoForm.value.mobileNo,
+    this.accountInfoObject.email = this.accountInfoForm.value.email,
 
-    email: this.accountInfoForm.value.email,
+    this.accountInfoObject.referrer_account_no = this.accountInfoForm.value.referrer_account_no,
 
-    referrer_account_no: this.accountInfoForm.value.referrer_account_no,
+    this.accountInfoObject.referrer_name = this.accountInfoForm.value.referrer_name,
 
-    referrer_name: this.accountInfoForm.value.referrer_name,
-    };
+    //console.log(this.accountInfoObject)
+    this.newItemEvent.emit(this.accountInfoObject);
+    this.counter.emit(1);
 
-    localStorage.setItem('accountInfoObject', JSON.stringify(accountInfoObject));
+    //localStorage.setItem('accountInfoObject', JSON.stringify(this.accountInfoObject));
 
-    this.router.navigateByUrl('tax-info');
+    //this.router.navigateByUrl('tax-info');
   }
 
   validateUserID():boolean{

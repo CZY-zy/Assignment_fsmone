@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
 
@@ -8,6 +8,8 @@ import { Location } from '@angular/common';
   styleUrls: ['./financial-info.component.css']
 })
 export class FinancialInfoComponent implements OnInit {
+
+  @Output() counter = new EventEmitter<number>();
 
   //checked = true;
 
