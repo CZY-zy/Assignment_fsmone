@@ -1,12 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validator, ReactiveFormsModule, Validators, FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Location } from '@angular/common';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzUploadFile } from 'ng-zorro-antd/upload';
 import { HttpClient, HttpRequest, HttpResponse } from '@angular/common/http';
 import { filter } from 'rxjs/operators';
-import { AccountInfoComponent } from '../account-info/account-info.component';
 import { NgModule } from '@angular/core';
 import { AccountInformation } from '../model/account-information.model';
 
@@ -19,16 +16,13 @@ export class BasicInfoComponent implements OnInit {
 
   @Input() retrievedAccountInformation = new AccountInformation();
   @Output() counter = new EventEmitter<number>();
+  step = 3;
 
   constructor(
-    private router: Router,
-    private location: Location,
     private fb: FormBuilder,
     private http: HttpClient, 
     private msg: NzMessageService
-  ) {
-    localStorage.setItem('step',"basicInformation",);
-  }
+  ) {}
 
   basicInfoForm = new FormGroup({
     citizenship: new FormControl({value:'', disabled:true}, Validators.compose([
@@ -94,20 +88,7 @@ export class BasicInfoComponent implements OnInit {
 
   disabled = true;
 
-  /*readCitizenship = this.accountInfoObject.citizenship;
-
-  readNric = this.accountInfoObject.nric;
-
-  readSalutation = this.accountInfoObject.salutation;
-
-  readName = this.accountInfoObject.name;
-
-  readDialingCode = this.accountInfoObject.dialing_code;
-
-  readMobileNo = this.accountInfoObject.mobileNo;*/
-
   ngOnInit(): void {
-    //this.validateForm = this.fb.group({});
     this.addField();
     this.addFieldMail();
   }
@@ -117,7 +98,6 @@ export class BasicInfoComponent implements OnInit {
   }
 
   //code for add field(residential address)
-  //validateForm!: FormGroup;
   listOfControl: Array<{ id: number; controlInstance: string }> = [];
   firstLineAddress!:boolean;
   secondLineAddress!:boolean;
@@ -249,7 +229,6 @@ export class BasicInfoComponent implements OnInit {
   }
 
   back(){
-    // this.location.back();
     this.counter.emit(2);
   }
 

@@ -1,6 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validator, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { AccountInformation } from '../model/account-information.model';
 
 @Component({
@@ -12,6 +11,7 @@ export class AccountInfoComponent implements OnInit {
 
   @Output() newItemEvent = new EventEmitter<AccountInformation>();
   @Output() counter = new EventEmitter<number>();
+  step = 0;
 
   accountInfoObject: AccountInformation = new AccountInformation();
 
@@ -54,19 +54,9 @@ export class AccountInfoComponent implements OnInit {
     referrer_name: new FormControl('')
   });
 
-  constructor(private router: Router) {
-    localStorage.setItem('step',"accountInformation");
-   }
+  constructor() {}
 
   ngOnInit(): void {
-    /*this.accountInfoForm = new FormGroup({
-      user_id: new FormControl(
-        this.accountInfoForm.value.user_id,[
-          Validators.required, 
-          Validators.minLength(8)
-        ]
-      )
-    });*/
   }
 
   user_validation!: boolean;
@@ -129,13 +119,8 @@ export class AccountInfoComponent implements OnInit {
 
     this.accountInfoObject.referrer_name = this.accountInfoForm.value.referrer_name,
 
-    //console.log(this.accountInfoObject)
     this.newItemEvent.emit(this.accountInfoObject);
     this.counter.emit(1);
-
-    //localStorage.setItem('accountInfoObject', JSON.stringify(this.accountInfoObject));
-
-    //this.router.navigateByUrl('tax-info');
   }
 
   validateUserID():boolean{

@@ -1,6 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-financial-info',
@@ -10,8 +9,7 @@ import { Location } from '@angular/common';
 export class FinancialInfoComponent implements OnInit {
 
   @Output() counter = new EventEmitter<number>();
-
-  //checked = true;
+  step = 4;
 
   financialInfoForm = new FormGroup({
     occupation: new FormControl('', Validators.compose([
@@ -39,15 +37,12 @@ export class FinancialInfoComponent implements OnInit {
     //epf_simpanan_shariah: new FormControl('')
   })
 
-  constructor(private location: Location) {
-    localStorage.setItem('step',"financialInformation",);
-  }
+  constructor() {}
 
   ngOnInit(): void {
   }
 
   back(){
-    // this.location.back();
     this.counter.emit(3);
   }
 

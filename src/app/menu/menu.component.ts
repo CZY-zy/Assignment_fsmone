@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 
 @Component({
   selector: 'app-menu',
@@ -7,51 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  @Input() step!: number;
+  constructor() {}
 
   ngOnInit(): void {
-  }
-
-  checkStep(): void{
-  }
-
-  isAccountInfo(): boolean{
-    if(localStorage.getItem('step')=="accountInformation"){
-      return true;
-    }else{
-      return false;
-    }
-  }
-
-  isTaxInfo(): boolean{
-    if(localStorage.getItem('step')=="taxInformation"){
-      return true;
-    }else{
-      return false;
-    }
-  }
-
-  isSupportDoc(): boolean{
-    if(localStorage.getItem('step')=="supporting_doc"){
-      return true;
-    }else{
-      return false;
-    }
-  }
-
-  isBasicInfo(): boolean{
-    if(localStorage.getItem('step')=="basicInformation"){
-      return true;
-    }else{
-      return false;
-    }
-  }
-
-  isFinancialInfo(): boolean{
-    if(localStorage.getItem('step')=="financialInformation"){
-      return true;
-    }else{
-      return false;
-    }
   }
 }

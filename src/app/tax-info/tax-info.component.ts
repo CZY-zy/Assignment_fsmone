@@ -1,6 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validator, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tax-info',
@@ -10,15 +9,14 @@ import { Router } from '@angular/router';
 export class TaxInfoComponent implements OnInit {
 
   @Output() counter = new EventEmitter<number>();
+  step = 1;
 
   taxInfoForm = new FormGroup({
     us_citizenship_greencard_passport: new FormControl('No'),
     my_tax_resident: new FormControl('No')
   })
 
-  constructor(private router: Router) {
-    localStorage.setItem('step',"taxInformation");
-   }
+  constructor() {}
 
   ngOnInit(): void {
   }
@@ -30,10 +28,7 @@ export class TaxInfoComponent implements OnInit {
     this.us_citizenship_greencard_passport = this.taxInfoForm.value.us_citizenship_greencard_passport;
     this.my_tax_resident = this.taxInfoForm.value.my_tax_resident;
     
-    //console.log(this.us_citizenship_greencard_passport);
-    //console.log(this.my_tax_resident);
     this.counter.emit(2);
-    //this.router.navigateByUrl('support-doc');
   }
 
 }

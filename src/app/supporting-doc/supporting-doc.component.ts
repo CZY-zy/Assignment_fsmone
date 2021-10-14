@@ -8,9 +8,6 @@ import { NzUploadFile } from 'ng-zorro-antd/upload';
 import { HttpClient, HttpRequest, HttpResponse } from '@angular/common/http';
 import { filter } from 'rxjs/operators';
 
-import { Location } from '@angular/common';
-import { Router } from '@angular/router';
-
 const getBase64 = (file: File): Promise<string | ArrayBuffer | null> =>
   new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -26,15 +23,13 @@ const getBase64 = (file: File): Promise<string | ArrayBuffer | null> =>
 export class SupportingDocComponent implements OnInit {
 
   @Output() counter = new EventEmitter<number>();
+  step = 2;
 
   uploadModel!:string;
 
   constructor(
     private msg: NzMessageService, 
-    private http: HttpClient,
-    private location: Location,
-    private router: Router) { 
-    localStorage.setItem('step',"supporting_doc",);
+    private http: HttpClient) { 
     this.uploadModel = "1st";
   }
 
@@ -151,13 +146,10 @@ export class SupportingDocComponent implements OnInit {
   
 
   back(){
-    // console.log('back')
-    // this.location.back();
     this.counter.emit(1);
   }
 
   saveAndContinue(){
     this.counter.emit(3);
-    //this.router.navigateByUrl('basic-info');
   }
 }

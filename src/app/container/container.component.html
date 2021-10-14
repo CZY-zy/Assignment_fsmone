@@ -1,13 +1,3 @@
-<!-- <app-account-info (newItemEvent)="setBasicInformationValue($event)"></app-account-info>
-
-<app-tax-info></app-tax-info>
-
-<app-supporting-doc></app-supporting-doc>
-
-<app-basic-info [retrievedAccountInformation]="retrievedAccountInformation"></app-basic-info>
-
-<app-financial-info></app-financial-info> -->
-
 <div class="container-component" [ngSwitch]="counter">
     <div *ngSwitchCase="'1'">
         <app-tax-info (counter)="setCounter($event)"></app-tax-info>

@@ -1,4 +1,4 @@
-<app-menu></app-menu>
+<app-menu [step]="step"></app-menu>
 
 <div class="content">
 
@@ -246,7 +246,6 @@
               <nz-form-item>
                 <nz-form-control [nzSpan]="10">
                   <nz-radio-group nzButtonStyle="solid" formControlName="mailing_address" [(ngModel)]="radioValue" (ngModelChange)="check_mailing_address($event)"> 
-                    <!--[(ngModel)]="radioValue" (ngModelChange)="check_mailing_address($event)"-->
                       <label nz-radio-button nzValue="Yes">Yes</label>
                       <label nz-radio-button nzValue="No">No</label>
                     </nz-radio-group>
@@ -339,15 +338,6 @@
 
           <div class="section">
             <h2>Supporting Document</h2>
-            <!--<div class="input-method">
-              <nz-card style="width:250px;height: 250px;">
-                  <div class="input-method-button-section">
-                      <div class="button-section">
-                          <button nz-button nzType="text" ><img src="../../assets/upload-nric-icon.svg"></button>
-                      </div>
-                  </div>
-              </nz-card>
-            </div>-->
             <nz-upload [(nzFileList)]="fileList" [nzBeforeUpload]="beforeUpload">
               <button nz-button>
                 <i nz-icon nzType="upload"></i>
