@@ -47,7 +47,8 @@ export class FinancialInfoComponent implements OnInit {
   }
 
   back(){
-    this.location.back();
+    // this.location.back();
+    this.counter.emit(3);
   }
 
   validateOccupation():boolean{

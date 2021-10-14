@@ -249,7 +249,8 @@ export class BasicInfoComponent implements OnInit {
   }
 
   back(){
-    this.location.back();
+    // this.location.back();
+    this.counter.emit(2);
   }
 
   saveAndContinue(){

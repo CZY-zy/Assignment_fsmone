@@ -151,8 +151,9 @@ export class SupportingDocComponent implements OnInit {
   
 
   back(){
-    console.log('back')
-    this.location.back();
+    // console.log('back')
+    // this.location.back();
+    this.counter.emit(1);
   }
 
   saveAndContinue(){
