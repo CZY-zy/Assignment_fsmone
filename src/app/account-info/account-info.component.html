@@ -20,15 +20,15 @@
                         </nz-input-group>
                     </nz-form-control>
                 </nz-form-item>
-                <div class="alert-danger" *ngIf="user_validation">
+                <div class="alert-danger" *ngIf="(accountInfoForm.controls['user_id'].invalid && accountInfoForm.controls['user_id'].dirty)||user_validation">
                     <nz-alert nzBanner nzMessage={{blankMessage}} 
-                        *ngIf="accountInfoForm.controls['user_id'].hasError('required')">
+                        *ngIf="accountInfoForm.controls['user_id'].errors?.required">
                     </nz-alert>
                     <nz-alert nzBanner nzMessage="Login name must be at least 8 characters." 
-                        *ngIf="accountInfoForm.controls['user_id'].hasError('minlength') || accountInfoForm.controls['user_id'].hasError('required')">
+                        *ngIf="accountInfoForm.controls['user_id'].errors?.minlength || accountInfoForm.controls['user_id'].errors?.required">
                     </nz-alert>
                     <nz-alert nzBanner nzMessage="Login name must contain alphabet value or combination of alphanumeric value only." 
-                        *ngIf="accountInfoForm.controls['user_id'].hasError('pattern')">
+                        *ngIf="accountInfoForm.controls['user_id'].errors?.pattern || accountInfoForm.controls['user_id'].errors?.required">
                     </nz-alert>
                 </div>
                 <div class="password1">
@@ -38,9 +38,9 @@
                                 <input type="password" formControlName="password" nz-input placeholder="Password">
                             </nz-input-group>
                         </nz-form-control>
-                        <div class="alert-danger-password" *ngIf="password_validation">
+                        <div class="alert-danger-password" *ngIf="(accountInfoForm.controls['password'].invalid && accountInfoForm.controls['password'].dirty) || password_validation">
                             <nz-alert nzBanner nzMessage={{blankMessage}} 
-                                *ngIf="accountInfoForm.controls['password'].hasError('required')">
+                                *ngIf="accountInfoForm.controls['password'].errors?.required">
                             </nz-alert>
                         </div>
                     </nz-form-item>
@@ -52,8 +52,8 @@
                                 <input type="password" formControlName="password2" nz-input placeholder="Confirm Password">
                             </nz-input-group>
                         </nz-form-control>
-                        <div class="alert-danger-password" *ngIf="password2_validation">
-                            <nz-alert nzBanner nzMessage="Please ensure both password field matches."></nz-alert>
+                        <div class="alert-danger-password" *ngIf="(accountInfoForm.controls['password'].dirty || password2_validation)">
+                            <nz-alert *ngIf="((accountInfoForm.controls['password'].value != accountInfoForm.controls['password2'].value)) || accountInfoForm.controls['password2'].invalid" nzBanner nzMessage="Please ensure both password field matches."></nz-alert>
                         </div>
                     </nz-form-item>
                 </div>
@@ -77,12 +77,12 @@
                         </nz-input-group>
                     </nz-form-control>
                 </nz-form-item>
-                <div class="alert-danger" *ngIf="nric_validation">
+                <div class="alert-danger" *ngIf="accountInfoForm.controls['nric'].dirty || nric_validation">
                     <nz-alert nzBanner nzMessage={{blankMessage}} 
-                        *ngIf="accountInfoForm.controls['nric'].hasError('required')">
+                        *ngIf="accountInfoForm.controls['nric'].errors?.required">
                     </nz-alert>
                     <nz-alert nzBanner nzMessage="Please enter a valid NRIC without dash." 
-                        *ngIf="accountInfoForm.controls['nric'].hasError('required') || accountInfoForm.controls['nric'].hasError('minlength')">
+                        *ngIf="accountInfoForm.controls['nric'].errors?.required || accountInfoForm.controls['nric'].errors?.minlength">
                     </nz-alert>
                 </div>
                 <nz-form-item>
@@ -117,9 +117,9 @@
                               </nz-input-group>
                         </nz-form-control>
                     </nz-form-item>
-                    <div class="alert-danger" *ngIf="salutation_validation">
+                    <div class="alert-danger" *ngIf="salutation_validation || accountInfoForm.controls['salutation'].touched">
                         <nz-alert nzBanner nzMessage={{blankMessage}} 
-                            *ngIf="accountInfoForm.controls['salutation'].hasError('required')">
+                            *ngIf="accountInfoForm.controls['salutation'].errors?.required">
                         </nz-alert>
                     </div>
                 </div>
@@ -131,9 +131,9 @@
                             </nz-input-group>
                         </nz-form-control>
                     </nz-form-item>
-                    <div class="alert-danger" *ngIf="name_validation">
+                    <div class="alert-danger" *ngIf="name_validation || accountInfoForm.controls['name'].dirty">
                         <nz-alert nzBanner nzMessage={{blankMessage}} 
-                            *ngIf="accountInfoForm.controls['name'].hasError('required')">
+                            *ngIf="accountInfoForm.controls['name'].errors?.required">
                         </nz-alert>
                     </div> 
                 </div>  
@@ -154,12 +154,12 @@
                       </nz-input-group>
                     </nz-form-control>
                 </nz-form-item>
-                <div class="alert-danger" *ngIf="mobile_no_validation">
+                <div class="alert-danger" *ngIf="mobile_no_validation || accountInfoForm.controls['mobileNo'].dirty">
                     <nz-alert nzBanner nzMessage={{blankMessage}} 
-                        *ngIf="accountInfoForm.controls['mobileNo'].hasError('required')">
+                        *ngIf="accountInfoForm.controls['mobileNo'].errors?.required">
                     </nz-alert>
                     <nz-alert nzBanner nzMessage="Please ensure the mobile number is valid." 
-                        *ngIf="accountInfoForm.controls['mobileNo'].hasError('minlength')">
+                        *ngIf="accountInfoForm.controls['mobileNo'].errors?.minlength">
                     </nz-alert>
                 </div> 
             </div>
@@ -173,12 +173,12 @@
                         </nz-input-group>
                     </nz-form-control>
                 </nz-form-item>
-                <div class="alert-danger" *ngIf="email_validation">
+                <div class="alert-danger" *ngIf="email_validation || accountInfoForm.controls['email'].dirty">
                     <nz-alert nzBanner nzMessage={{blankMessage}} 
-                        *ngIf="accountInfoForm.controls['email'].hasError('required')">
+                        *ngIf="accountInfoForm.controls['email'].errors?.required">
                     </nz-alert>
                     <nz-alert nzBanner nzMessage="Please enter your E-mail address in the format userid@address.domain"
-                        *ngIf="accountInfoForm.controls['email'].hasError('pattern')">
+                        *ngIf="accountInfoForm.controls['email'].errors?.pattern">
                     </nz-alert>
                 </div> 
             </div>

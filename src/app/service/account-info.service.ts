@@ -10,6 +10,7 @@ export class AccountInfoService {
 
   setAccountInfoObject(accountInfoObject: AccountInformation){
     this.accountInfoObject = accountInfoObject;
+    //console.log(this.accountInfoObject)
   }
 
   constructor() { }
