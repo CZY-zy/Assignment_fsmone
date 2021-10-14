@@ -12,5 +12,6 @@ export class TaxInfoService {
 
   setTaxInfoObject(taxInfoObject: TaxInfo){
     this.taxInfoObject = taxInfoObject;
+    console.log(this.taxInfoObject)
   }
 }

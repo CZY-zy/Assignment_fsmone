@@ -1,0 +1,30 @@
+<app-menu [step]="step"></app-menu>
+
+<div class="content">
+    <div class="content-header">
+        <h1>Trade Stocks With Us!</h1>
+        <h2>Opt-In For Stocks CDS Account (Optional)</h2>
+    </div>
+
+    <div class="content-form">
+        <p>Get access to the markets. Invest in individual companies or investments you favour, at low-commission rate.</p>
+
+        <p>Begin your Stocks and ETFs investing journey at FSMOne by opening a Nominee CDS account.</p>
+
+        <p>*There is a MYR 10.00 fee for opening a Nominee CDS account. Upon successful CDS account opening, the MYR 10.00 fee will be refunded back to your FSMOne Cash Account.</p>
+
+        <p>CDS account is only applicable to personal account holder and not beneficiary account.</p>
+
+        <img src="../../assets/opt-in-for-cds-account.png">
+        <form nz-form>
+            <nz-form-item>
+                <label nz-checkbox>Yes, opt me in for stocks CDS account.</label> `
+            </nz-form-item>
+
+            <div class="section">
+                <button nz-button nzType="primary" class="form-button" (click)="back()">Back</button>
+                <button nz-button nzType="primary" class="form-button" (click)="saveAndContinue()">Save & Continue</button>
+              </div>
+        </form>
+    </div>
+</div>

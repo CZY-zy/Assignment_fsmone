@@ -35,6 +35,7 @@ import { SupportingDocComponent } from './supporting-doc/supporting-doc.componen
 import { BasicInfoComponent } from './basic-info/basic-info.component';
 import { FinancialInfoComponent } from './financial-info/financial-info.component';
 import { ContainerComponent } from './container/container.component';
+import { OptInForStockComponent } from './opt-in-for-stock/opt-in-for-stock.component';
 
 registerLocaleData(en);
 
@@ -49,7 +50,8 @@ registerLocaleData(en);
     SupportingDocComponent,
     BasicInfoComponent,
     FinancialInfoComponent,
-    ContainerComponent
+    ContainerComponent,
+    OptInForStockComponent
   ],
   imports: [
     BrowserModule,

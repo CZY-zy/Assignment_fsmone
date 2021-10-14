@@ -46,74 +46,21 @@ export class FinancialInfoComponent implements OnInit {
     this.counter.emit(3);
   }
 
-  validateOccupation():boolean{
-    if(this.financialInfoForm.controls['occupation'].invalid){
-      return true;
-    }else{
-      return false;
-    }
-  }
-
-  validateBusinessNature():boolean{
-    if(this.financialInfoForm.controls['business_nature'].invalid){
-      return true;
-    }else{
-      return false;
-    }
-  }
-
-  validateCompanyName():boolean{
-    if(this.financialInfoForm.controls['company_name'].invalid){
-      return true;
-    }else{
-      return false;
-    }
-  }
-
-  validateAnnualIncome():boolean{
-    if(this.financialInfoForm.controls['annual_income'].invalid){
-      return true;
-    }else{
-      return false;
-    }
-  }
-
-  validateInvesmenSourceOfFund():boolean{
-    if(this.financialInfoForm.controls['invesment_source_of_fund'].invalid){
-      return true;
-    }else{
-      return false;
-    }
-  }
-
-  validateEstimatedNetworth():boolean{
-    if(this.financialInfoForm.controls['estimated_networth'].invalid){
-      return true;
-    }else{
-      return false;
-    }
-  }
-
   blankMessage = "Please make sure this field is not blank.";
-  occupation_validation!:boolean;
-  business_nature_validation!:boolean;
-  company_name_validation!:boolean;
-  annual_income_validation!:boolean;
-  invesment_source_of_fund_validation!:boolean;
-  estimated_networth_validation!:boolean;
+  formValidator = 0;
 
   submitFinancialInfoForm(): void {
-    this.occupation_validation = this.validateOccupation();
-    this.business_nature_validation = this.validateBusinessNature();
-    this.company_name_validation = this.validateCompanyName();
-    this.annual_income_validation = this.validateAnnualIncome();
-    this.invesment_source_of_fund_validation = this.validateInvesmenSourceOfFund();
-    this.estimated_networth_validation = this.validateEstimatedNetworth();
+
   }
 
   saveAndContinue(): void{
 
-    this.submitFinancialInfoForm();
+    if(this.financialInfoForm.valid){
+      this.formValidator = 0;
+      this.counter.emit(5);
+    }else{
+      this.formValidator = 1;
+    }
   }
 
 }

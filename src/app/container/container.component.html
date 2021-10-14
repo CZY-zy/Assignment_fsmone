@@ -10,8 +10,11 @@
      </div>
     <div *ngSwitchCase="'4'">
         <app-financial-info (counter)="setCounter($event)"></app-financial-info>
-     </div>
-     <div *ngSwitchDefault>
+    </div>
+    <div *ngSwitchCase="'5'">
+        <app-opt-in-for-stock (counter)="setCounter($event)"></app-opt-in-for-stock>
+    </div>
+    <div *ngSwitchDefault>
         <app-account-info (newItemEvent)="setBasicInformationValue($event)" (counter)="setCounter($event)"></app-account-info>
-     </div>
+    </div>
 </div>

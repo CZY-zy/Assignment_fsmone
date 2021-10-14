@@ -22,7 +22,7 @@
                 </nz-input-group>
           </nz-form-control>
         </nz-form-item>
-        <div *ngIf="occupation_validation">
+        <div *ngIf="formValidator">
           <div class="alert-danger" *ngIf="financialInfoForm.controls['occupation'].hasError('required')">
             <nz-alert nzBanner nzMessage={{blankMessage}} ></nz-alert>
           </div>
@@ -40,7 +40,7 @@
                 </nz-input-group>
           </nz-form-control>
         </nz-form-item>
-        <div *ngIf="business_nature_validation">
+        <div *ngIf="formValidator">
           <div class="alert-danger" *ngIf="financialInfoForm.controls['business_nature'].hasError('required')">
             <nz-alert nzBanner nzMessage={{blankMessage}} ></nz-alert>
           </div>
@@ -52,7 +52,7 @@
               </nz-input-group>
           </nz-form-control>
         </nz-form-item>
-        <div *ngIf="company_name_validation">
+        <div *ngIf="formValidator">
           <div class="alert-danger" *ngIf="financialInfoForm.controls['company_name'].hasError('required')">
             <nz-alert nzBanner nzMessage={{blankMessage}} ></nz-alert>
           </div>
@@ -74,7 +74,7 @@
                 </nz-input-group>
           </nz-form-control>
         </nz-form-item>
-        <div *ngIf="annual_income_validation">
+        <div *ngIf="formValidator">
           <div class="alert-danger" *ngIf="financialInfoForm.controls['annual_income'].hasError('required')">
             <nz-alert nzBanner nzMessage={{blankMessage}} ></nz-alert>
           </div>
@@ -94,7 +94,7 @@
                 </nz-input-group>
           </nz-form-control>
         </nz-form-item>
-        <div *ngIf="invesment_source_of_fund_validation">
+        <div *ngIf="formValidator">
           <div class="alert-danger" *ngIf="financialInfoForm.controls['invesment_source_of_fund'].hasError('required')">
             <nz-alert nzBanner nzMessage={{blankMessage}} ></nz-alert>
           </div>
@@ -122,7 +122,7 @@
                 </nz-input-group>
           </nz-form-control>
         </nz-form-item>
-        <div *ngIf="estimated_networth_validation">
+        <div *ngIf="formValidator">
           <div class="alert-danger" *ngIf="financialInfoForm.controls['estimated_networth'].hasError('required')">
             <nz-alert nzBanner nzMessage={{blankMessage}} ></nz-alert>
           </div>
