@@ -20,7 +20,7 @@
                         </nz-input-group>
                     </nz-form-control>
                 </nz-form-item>
-                <div class="alert-danger" *ngIf="(accountInfoForm.controls['user_id'].invalid && accountInfoForm.controls['user_id'].dirty)||user_validation">
+                <div class="alert-danger" *ngIf="(accountInfoForm.controls['user_id'].invalid && accountInfoForm.controls['user_id'].dirty)||formValidator">
                     <nz-alert nzBanner nzMessage={{blankMessage}} 
                         *ngIf="accountInfoForm.controls['user_id'].errors?.required">
                     </nz-alert>
@@ -38,7 +38,7 @@
                                 <input type="password" formControlName="password" nz-input placeholder="Password">
                             </nz-input-group>
                         </nz-form-control>
-                        <div class="alert-danger-password" *ngIf="(accountInfoForm.controls['password'].invalid && accountInfoForm.controls['password'].dirty) || password_validation">
+                        <div class="alert-danger-password" *ngIf="(accountInfoForm.controls['password'].invalid && accountInfoForm.controls['password'].dirty) || formValidator">
                             <nz-alert nzBanner nzMessage={{blankMessage}} 
                                 *ngIf="accountInfoForm.controls['password'].errors?.required">
                             </nz-alert>
@@ -52,7 +52,7 @@
                                 <input type="password" formControlName="password2" nz-input placeholder="Confirm Password">
                             </nz-input-group>
                         </nz-form-control>
-                        <div class="alert-danger-password" *ngIf="(accountInfoForm.controls['password'].dirty || password2_validation)">
+                        <div class="alert-danger-password" *ngIf="(accountInfoForm.controls['password'].dirty || formValidator)">
                             <nz-alert *ngIf="((accountInfoForm.controls['password'].value != accountInfoForm.controls['password2'].value)) || accountInfoForm.controls['password2'].invalid" nzBanner nzMessage="Please ensure both password field matches."></nz-alert>
                         </div>
                     </nz-form-item>
@@ -77,7 +77,7 @@
                         </nz-input-group>
                     </nz-form-control>
                 </nz-form-item>
-                <div class="alert-danger" *ngIf="accountInfoForm.controls['nric'].dirty || nric_validation">
+                <div class="alert-danger" *ngIf="accountInfoForm.controls['nric'].dirty || formValidator">
                     <nz-alert nzBanner nzMessage={{blankMessage}} 
                         *ngIf="accountInfoForm.controls['nric'].errors?.required">
                     </nz-alert>
@@ -117,7 +117,7 @@
                               </nz-input-group>
                         </nz-form-control>
                     </nz-form-item>
-                    <div class="alert-danger" *ngIf="salutation_validation || accountInfoForm.controls['salutation'].touched">
+                    <div class="alert-danger" *ngIf="formValidator || accountInfoForm.controls['salutation'].touched">
                         <nz-alert nzBanner nzMessage={{blankMessage}} 
                             *ngIf="accountInfoForm.controls['salutation'].errors?.required">
                         </nz-alert>
@@ -131,7 +131,7 @@
                             </nz-input-group>
                         </nz-form-control>
                     </nz-form-item>
-                    <div class="alert-danger" *ngIf="name_validation || accountInfoForm.controls['name'].dirty">
+                    <div class="alert-danger" *ngIf="formValidator || accountInfoForm.controls['name'].dirty">
                         <nz-alert nzBanner nzMessage={{blankMessage}} 
                             *ngIf="accountInfoForm.controls['name'].errors?.required">
                         </nz-alert>
@@ -154,7 +154,7 @@
                       </nz-input-group>
                     </nz-form-control>
                 </nz-form-item>
-                <div class="alert-danger" *ngIf="mobile_no_validation || accountInfoForm.controls['mobileNo'].dirty">
+                <div class="alert-danger" *ngIf="formValidator || accountInfoForm.controls['mobileNo'].dirty">
                     <nz-alert nzBanner nzMessage={{blankMessage}} 
                         *ngIf="accountInfoForm.controls['mobileNo'].errors?.required">
                     </nz-alert>
@@ -173,7 +173,7 @@
                         </nz-input-group>
                     </nz-form-control>
                 </nz-form-item>
-                <div class="alert-danger" *ngIf="email_validation || accountInfoForm.controls['email'].dirty">
+                <div class="alert-danger" *ngIf="formValidator || accountInfoForm.controls['email'].dirty">
                     <nz-alert nzBanner nzMessage={{blankMessage}} 
                         *ngIf="accountInfoForm.controls['email'].errors?.required">
                     </nz-alert>

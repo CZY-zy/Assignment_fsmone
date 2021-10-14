@@ -32,8 +32,7 @@ export class AccountInfoComponent implements OnInit {
     citizenship: new FormControl('Yes'),
     nric: new FormControl('', Validators.compose([
       Validators.required,
-      Validators.minLength(12),
-      Validators.pattern("^[0-9]$")
+      Validators.minLength(12)
     ])),
     nric_type: new FormControl('MyKad'),
     salutation: new FormControl('', Validators.compose([
@@ -62,37 +61,16 @@ export class AccountInfoComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  user_validation!: boolean;
-  password_validation!: boolean;
-  password2_validation!: boolean;
-  nric_validation!:boolean;
-  salutation_validation!:boolean;
-  name_validation!:boolean;
-  mobile_no_validation!:boolean;
-  email_validation!:boolean;
+  formValidator = 0;
 
   blankMessage = "Please make sure this field is not blank.";
 
   submitAccountInfo(): void{
 
-    this.user_validation = this.validateUserID();
-
-    this.password_validation = this.validatePassword();
-
-    this.password2_validation = this.validateConfirmPassword();
-
-    this.nric_validation = this.validateNric();
-
-    this.salutation_validation = this.validateSalutation();
-
-    this.name_validation = this.validateName();
-
-    this.mobile_no_validation = this.validateMobileNo();
-
-    this.email_validation = this.validateEmail();
-
-    if(!(this.user_validation&&this.password2_validation&&this.nric_validation&&this.salutation_validation&&this.name_validation&&this.mobile_no_validation&&this.email_validation)){
+    if(this.accountInfoForm.valid){
       this.createAccountInfo();
+    }else{
+      this.formValidator = 1;
     }
   }
 
@@ -125,81 +103,5 @@ export class AccountInfoComponent implements OnInit {
     this.newItemEvent.emit(this.accountInfoObject);
     this.accountInfoService.setAccountInfoObject(this.accountInfoObject);
     this.counter.emit(1);
-  }
-
-  validateUserID():boolean{
-
-    if(this.accountInfoForm.controls['user_id'].invalid){
-
-      if(this.accountInfoForm.controls['user_id'].hasError('pattern')){
-        return true;
-      }
-      return true;
-    }else{
-      return false;
-    }
-  }
-
-  validatePassword():boolean{
-    if(this.accountInfoForm.controls['password'].invalid){
-      return true;
-    }else{
-      return false;
-    }
-  }
-
-  validateConfirmPassword():boolean{
-    if(this.accountInfoForm.controls['password2'].invalid){
-      console.log("invalidpassworkd")
-      return true;
-    }else{
-
-      if(this.accountInfoForm.value.password!=this.accountInfoForm.value.password2){
-        console.log("different")
-        return true;
-      }
-
-      return false;
-    }
-  }
-
-  validateNric():boolean{
-    if(this.accountInfoForm.controls['nric'].invalid){
-      return true;
-    }else{
-      return false;
-    }
-  }
-
-  validateSalutation(): boolean{
-    if(this.accountInfoForm.controls['salutation'].invalid){
-      return true;
-    }else{
-      return false;
-    }
-  }
-
-  validateName(): boolean{
-    if(this.accountInfoForm.controls['name'].invalid){
-      return true;
-    }else{
-      return false;
-    }
-  }
-
-  validateMobileNo(): boolean{
-    if(this.accountInfoForm.controls['mobileNo'].invalid){
-      return true;
-    }else{
-      return false;
-    }
-  }
-
-  validateEmail(): boolean{
-    if(this.accountInfoForm.controls['email'].invalid){
-      return true;
-    }else{
-      return false;
-    }
   }
 }
