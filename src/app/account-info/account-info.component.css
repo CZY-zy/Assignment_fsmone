@@ -14,6 +14,12 @@
     position: relative;
   }
 
+  .salutation{
+    float: left;
+    width:30rem;
+    position: relative;
+  }
+
   .alert-danger-password {
     margin: -15px 0;
     position: absolute;
@@ -21,7 +27,7 @@
   }
 
   .ant-input-group.ant-input-group-compact>.ant-cascader-picker-focused:last-child .ant-input, .ant-input-group.ant-input-group-compact>.ant-cascader-picker:last-child .ant-input, .ant-input-group.ant-input-group-compact>.ant-select:last-child>.ant-select-selector, .ant-input-group.ant-input-group-compact>:last-child {
-    width: 600px;
+    width: 100%
 }
 
 ::ng-deep .ant-input-group-addon .ant-select.ant-select-single:not(.ant-select-customize-input) .ant-select-selector {

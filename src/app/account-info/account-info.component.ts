@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validator, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AccountInformation } from '../model/account-information.model';
+import { AccountInfoService } from '../service/account-info.service';
 
 @Component({
   selector: 'app-account-info',
@@ -54,7 +55,9 @@ export class AccountInfoComponent implements OnInit {
     referrer_name: new FormControl('')
   });
 
-  constructor() {}
+  constructor(
+    private accountInfoService: AccountInfoService
+  ) {}
 
   ngOnInit(): void {
   }
@@ -120,6 +123,7 @@ export class AccountInfoComponent implements OnInit {
     this.accountInfoObject.referrer_name = this.accountInfoForm.value.referrer_name,
 
     this.newItemEvent.emit(this.accountInfoObject);
+    this.accountInfoService.setAccountInfoObject(this.accountInfoObject);
     this.counter.emit(1);
   }
 

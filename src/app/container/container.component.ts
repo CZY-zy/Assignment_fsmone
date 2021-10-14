@@ -14,8 +14,6 @@ export class ContainerComponent implements OnInit {
 
   setBasicInformationValue(event: AccountInformation){
     this.retrievedAccountInformation = event;
-
-    console.log(this.retrievedAccountInformation);
   }
 
   setCounter(event: number){
