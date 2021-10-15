@@ -82,15 +82,14 @@ export class BasicInfoComponent implements OnInit {
     ])),
   });
 
-  retrieveObject = (localStorage.getItem('accountInfoObject') || '{}');
-
-  accountInfoObject = JSON.parse(this.retrieveObject);
-
   disabled = true;
+  birthday!:Date;
 
   ngOnInit(): void {
     this.addField();
     this.addFieldMail();
+    this.birthday = this.getBirthday();
+    console.log(this.birthday);
   }
 
   submitBasicInfo():void{
@@ -246,6 +245,27 @@ export class BasicInfoComponent implements OnInit {
     
     if(!(this.race_validation&&this.marital_status_validation&&this.postal_validation&&this.city_validation&&this.state_validation)){
       this.counter.emit(4);
+    }
+  }
+
+  getBirthday(): Date{
+
+    const nric_birthday = this.retrievedAccountInformation.nric;
+
+    const year = parseInt(nric_birthday.substring(0,2));
+    const month = parseInt(nric_birthday.substring(2,4))-1;
+    const day = parseInt(nric_birthday.substring(4,6));
+  
+    const year1900 = year+1900;
+    const year2000 = year+2000;
+  
+  
+    if(year>21){
+      const birthday = new Date(year1900,month,day);
+      return birthday;
+    }else{
+      const birthday = new Date(year2000,month,day);
+      return birthday;
     }
   }
 }
