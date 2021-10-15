@@ -93,7 +93,7 @@
                       </nz-input-group>
                 </nz-form-control>
               </nz-form-item>
-              <div *ngIf="formValidator">
+              <div *ngIf="race_validation">
                 <div class="alert-danger" *ngIf="basicInfoForm.controls['race'].hasError('required')">
                   <nz-alert nzBanner nzMessage={{blankMessage}} ></nz-alert>
                 </div>
@@ -125,7 +125,7 @@
                     </nz-input-group>
               </nz-form-control>
               </nz-form-item>
-              <div *ngIf="formValidator">
+              <div *ngIf="marital_status_validation">
                 <div class="alert-danger" *ngIf="basicInfoForm.controls['marital_status'].hasError('required')">
                   <nz-alert nzBanner nzMessage={{blankMessage}} ></nz-alert>
                 </div>
@@ -183,11 +183,6 @@
                 />
               </nz-form-control>
             </nz-form-item>
-            <div *ngIf="formValidator">
-              <div class="alert-danger" *ngIf="basicInfoForm.controls['residential_address0'].errors?.required">
-                <nz-alert nzBanner nzMessage={{blankMessage}} ></nz-alert>
-              </div>
-            </div>
             <nz-form-item>
               <nz-form-control>
                 <button nz-button nzType="text" class="add-button" (click)="addField($event)" *ngIf="this.listOfControl.length<2">
@@ -203,7 +198,7 @@
                   <nz-form-control>
                     <input formControlName="postal_code" nz-input placeholder="Postal Code"/>
                   </nz-form-control>
-                  <div *ngIf="formValidator">
+                  <div *ngIf="postal_validation">
                     <div class="alert-danger" *ngIf="basicInfoForm.controls['postal_code'].hasError('required')">
                       <nz-alert nzBanner nzMessage={{blankMessage}} ></nz-alert>
                     </div>
@@ -215,7 +210,7 @@
                   <nz-form-control>
                     <input formControlName="city" nz-input placeholder="City"/>
                 </nz-form-control>
-                <div *ngIf="formValidator">
+                <div *ngIf="city_validation">
                   <div class="alert-danger" *ngIf="basicInfoForm.controls['city'].hasError('required')">
                     <nz-alert nzBanner nzMessage={{blankMessage}} ></nz-alert>
                   </div>
@@ -235,7 +230,7 @@
                         </nz-select>
                       </nz-input-group>
                 </nz-form-control>
-                <div *ngIf="formValidator">
+                <div *ngIf="state_validation">
                   <div class="alert-danger" *ngIf="basicInfoForm.controls['state'].hasError('required')">
                     <nz-alert nzBanner nzMessage={{blankMessage}} ></nz-alert>
                   </div>
@@ -311,7 +306,7 @@
                       <input formControlName="postal_code_mail" nz-input placeholder="Postal Code"/>
                     </nz-form-control>
                   </nz-form-item>
-                  <div class="alert-danger" *ngIf="formValidator && basicInfoForm.value.mailing_address.dirty">
+                  <div class="alert-danger" *ngIf="postal_validation">
                     <nz-alert nzBanner nzMessage={{blankMessage}} ></nz-alert>
                   </div>
                 </div>

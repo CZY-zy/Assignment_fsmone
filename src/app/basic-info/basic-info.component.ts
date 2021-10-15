@@ -82,6 +82,10 @@ export class BasicInfoComponent implements OnInit {
     ])),
   });
 
+  retrieveObject = (localStorage.getItem('accountInfoObject') || '{}');
+
+  accountInfoObject = JSON.parse(this.retrieveObject);
+
   disabled = true;
 
   ngOnInit(): void {
@@ -90,7 +94,7 @@ export class BasicInfoComponent implements OnInit {
   }
 
   submitBasicInfo():void{
-
+    console.log(this.basicInfoForm.value)
   }
 
   //code for add field(residential address)
@@ -174,23 +178,74 @@ export class BasicInfoComponent implements OnInit {
 
   }
 
+  //Validators
+
   blankMessage = "Please make sure this field is not blank.";
+
+  race_validation!: boolean;
+  marital_status_validation!: boolean;
+  postal_validation!:boolean;
+  city_validation!:boolean;
+  state_validation!:boolean;
+
+  validateRace(): boolean{
+    if(this.basicInfoForm.controls['race'].invalid){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  validateMaritalStatus(): boolean{
+    if(this.basicInfoForm.controls['marital_status'].invalid){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  validatePostal(): boolean{
+    if(this.basicInfoForm.controls['postal_code'].invalid){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  validateCity(): boolean{
+    if(this.basicInfoForm.controls['city'].invalid){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  validateState(): boolean{
+    if(this.basicInfoForm.controls['state'].invalid){
+      return true;
+    }else{
+      return false;
+    }
+  }
 
   back(){
     this.counter.emit(2);
   }
 
-  formValidator = 0;
-
   saveAndContinue(){
 
-    console.log(this.basicInfoForm.value);
+    this.race_validation = this.validateRace();
+
+    this.marital_status_validation = this.validateMaritalStatus();
+
+    this.postal_validation = this.validatePostal();
+
+    this.city_validation = this.validateCity();
+
+    this.state_validation = this.validateState();
     
-    if(this.basicInfoForm.valid){
-      this.formValidator = 0;
+    if(!(this.race_validation&&this.marital_status_validation&&this.postal_validation&&this.city_validation&&this.state_validation)){
       this.counter.emit(4);
-    }else{
-      this.formValidator = 1;
     }
   }
 }
